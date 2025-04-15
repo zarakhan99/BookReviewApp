@@ -36,6 +36,12 @@ namespace BookReviewApi.Controllers
         [HttpPost("register")] //Endpoint to register user 
         public async Task<IActionResult> Register(AuthModel model)
         {
+            var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            if (existingUser != null)
+            {
+                return BadRequest("Account with this email already exists.");
+            
+            }
             // Create a new identity user with email and password
             var user = new IdentityUser { UserName = model.Email, Email = model.Email }; 
             var result = await _userManager.CreateAsync(user, model.Password); 

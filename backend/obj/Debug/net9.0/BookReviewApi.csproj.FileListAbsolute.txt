@@ -2070,3 +2070,4 @@
 /Users/zara/Desktop/BookReviewApp/backend/obj/Debug/net9.0/BookReviewApi.pdb
 /Users/zara/Desktop/BookReviewApp/backend/obj/Debug/net9.0/BookReviewApi.genruntimeconfig.cache
 /Users/zara/Desktop/BookReviewApp/backend/obj/Debug/net9.0/ref/BookReviewApi.dll
+/Users/zara/Desktop/BookReviewApp/backend/obj/Debug/net9.0/BookReviewApi.sourcelink.json
