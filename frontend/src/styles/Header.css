@@ -1,0 +1,79 @@
+
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f4f1ea;
+    padding: 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .logo {
+    padding-top: 46px;
+    font: Georgia, serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: #382110;
+    text-decoration: none;
+  }
+
+  .bold-look {
+    font-weight: bold;
+  }
+  
+  /* 3. Navigation menu */
+  .menu {
+    display: flex;
+    gap: 25px;
+    background-color: #f4f1ea;
+    list-style: none;
+    padding-right: 25px;
+  }
+ 
+  /* 5. Individual menu items (like li or a inside menu) */
+  .menu li {
+    color: #333333;
+  }
+  
+  .menu li a:hover {
+    color: #f4f1ea;
+    background-color:#382110;
+
+  }
+
+  
+  /* 6. Link styling */
+  .menu a {
+    padding-left: 10px;
+    color: #382110;
+  }
+  
+  /* 8. Hamburger menu icon for mobile */
+  .menu-icon {
+    display: none;
+    color: #333333;
+  }
+  
+  /* 9. Responsive styles for mobile (media query) */
+  @media screen and (max-width: 768px) {
+    .menu {
+      background-color: #f4f1ea;
+    }
+    .menu-icon {
+      color: #333333;
+    }
+  }
