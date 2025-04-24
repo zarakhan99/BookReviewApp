@@ -141,3 +141,5 @@ dist
 # IDE and editor settings
 .idea/
 .vscode/
+backend/bin/
+backend/obj/
