@@ -14,27 +14,38 @@ export const AppProvider = ({ children }) => {
     const [userEmail, setUserEmail] = useState(); 
     const [token, setToken] = useState(null);
 
-    const [books, setbooks] = useState([]);
+    const [books, setBooks] = useState([]);
     const [genres, setGenres] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [myBooks, setMyBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     
-    /*
+    //fetching books
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            setLoading(true);
-    
-            // Fetch perfumes
-            const books = await api.get('/books');
-            setbooks(books.data);
-    
+      const fetchBookData = async () => {
+        try {
+          setLoading(true);
+          
+          // Fetch books
+          const books = await api.get('/books');
+          setBooks(books.data);
+          
+          setLoading(false);
+          
+        } catch (err) {
+          if (err.response?.status === 404) {
+            setError("No books found");
+          } else {
+            console.error("Fetch failed:", err);
+          }
+          setLoading(false);
         }
-      },
-    }
-      */
+      };
+      
+      fetchBookData(); // Call inside useEffect
+    }, []);
+      
 
   
     const login = (userData, token) => {
