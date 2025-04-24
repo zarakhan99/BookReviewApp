@@ -21,6 +21,20 @@ export const AppProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     
+    /*
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            setLoading(true);
+    
+            // Fetch perfumes
+            const books = await api.get('/books');
+            setbooks(books.data);
+    
+        }
+      },
+    }
+      */
 
   
     const login = (userData, token) => {
@@ -47,11 +61,22 @@ export const AppProvider = ({ children }) => {
 
       setIsAuthenticated(false);
     };
-
-    return (
-      <AppContext.Provider value={{ user, token, login, logout }}>
-        {children}
-      </AppContext.Provider>
-    );
-  };
-  export const useAppContext = () => useContext(AppContext);
+  
+    const value = {
+          user,
+          token,
+          login,
+          logout,
+          isAuthenticated, 
+          userId,
+          userRole,
+          userEmail,
+        };
+    
+        return (
+          <AppContext.Provider value={value}>
+            {children}
+          </AppContext.Provider>
+        );
+      };
+      export const useAppContext = () => useContext(AppContext);
