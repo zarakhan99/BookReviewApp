@@ -1,22 +1,24 @@
 import React from 'react';
+import { Link} from 'react-router-dom';
 
-function BookCard({title, author, publishYear, description}) 
-{
-    const previewLength = description.length > 50
-    ? description.substring[0,50] + '...' : description
 
-    return 
-    (
-        <div className='BookCard'>
-            <img src = {image} alt={title}/>
-            <h4>{title}</h4>
-            <p>{author}</p>
-            <p>{publishYear}</p>
-            <p>{description}</p>
-            <Link
-            to="/Book">BookDetailsPage</Link>
+function BookCard({ bookId, title, author, publishYear, bookDescription }) {
+    console.log("Rendering BookCard with:", { 
+      bookId, title, author, publishYear, bookDescription 
+    });
+
+    const previewLength = bookDescription.length > 110
+  ? bookDescription.substring(0, 110) + '...' : bookDescription
+
+    return (
+        <div className="BookCard">
+          <h4>Title: {title}</h4>
+          <p> Author: {author}</p>
+          <p> Published: {publishYear}</p>
+          <p>{previewLength}</p>
+          <Link to={`/books/${bookId}`}>Book Details</Link>
         </div>
-
-    )
-
-}
+      );
+    }
+    
+    export default BookCard;

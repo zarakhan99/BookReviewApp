@@ -102,7 +102,7 @@ import React, { useState } from "react";
                                                               className={location.pathname === "/manage-Books" ? "active" : ""}
                                                               onClick={closeMenu}
                                                             >
-                                                              Manage Books
+                                                              Dashboard
                                                             </Link>
                                                           </li><li>
                                                               <Link

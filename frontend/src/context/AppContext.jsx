@@ -29,6 +29,7 @@ export const AppProvider = ({ children }) => {
           
           // Fetch books
           const books = await api.get('/books');
+
           setBooks(books.data);
           
           setLoading(false);
@@ -46,6 +47,33 @@ export const AppProvider = ({ children }) => {
       fetchBookData(); // Call inside useEffect
     }, []);
       
+    //get reviews for specific book
+    const bookReviews = ({bookId, onClose}) => {
+
+      useEffect (() => {
+        const fetchBookReviews = async () => {
+          try {
+            setLoading(true);
+
+            const bReviews = await api.get(`/ByBook/${bookId}`);
+
+            setReviews(response.data);
+
+            setLoading(false);
+          } catch (err) {
+            if (err.response?.status === 404) {
+              setError("No reviews found for book");
+            } else {
+              console.error("Fetch failed:", err);
+            }
+            setLoading(false);
+          }
+        };
+        
+        fetchBookReviews(); // Call inside useEffect
+      }, []);
+    };
+
 
   
     const login = (userData, token) => {
@@ -82,6 +110,15 @@ export const AppProvider = ({ children }) => {
           userId,
           userRole,
           userEmail,
+
+          books,
+          loading,
+          error,
+          genres,
+          reviews,
+          myBooks,
+
+          bookReviews
         };
     
         return (
