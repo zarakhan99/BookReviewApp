@@ -11,20 +11,19 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #f4f1ea;
-    padding: 5px 10px;
+    background-color: #F4F2E9;
+    padding: 4px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    line-height: 35px;
   }
   
-  
   .logo {
-    height: 80px;
-    padding: 5px 50px; 
-    margin-top: 35px;
+    height: 40px;
+    padding: 15px 35px; 
     font: Georgia, serif;
     font-size: 21px;
     font-weight: 400;
@@ -39,29 +38,48 @@
   /* 3. Navigation menu */
   .menu {
     display: flex;
-    gap: 25px;
+    gap: 27px;
     background-color: #f4f1ea;
     list-style: none;
-    padding-right: 50px;
+    padding-right: 70px;
   }
  
   /* 5. Individual menu items (like li or a inside menu) */
   .menu li {
     color: #333333;
+    padding: 15px; 
   }
   
   .menu li a:hover {
-    color: #f4f1ea;
-    background-color:#382110;
+
 
   }
 
-  
   /* 6. Link styling */
   .menu a {
     padding-left: 10px;
     color: #382110;
   }
+
+.menu .search-input {
+    padding: 9px 12px;
+    border: 1px solid #dddddde3;
+    border-radius: 4px;
+    line-height: 1; /* Prevents line-height interference */
+    box-sizing: border-box;/* Match nav height */
+    width: 280px;
+}
+.menu .search-button {
+  padding: 8px 13px;
+  cursor: pointer; /* Force pointer cursor */
+  background: #2f7571; /* Solid background */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 3px; /* Optional: match input's border-radius */
+  line-height: 1; 
+  height: auto;
+  padding-top: 6.8px;
+}
   
   /* 8. Hamburger menu icon for mobile */
   .menu-icon {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
+import "../styles/BookCard.css";
 
 
 function BookCard({ bookId, title, author, publishYear, bookDescription }) {
@@ -12,7 +13,7 @@ function BookCard({ bookId, title, author, publishYear, bookDescription }) {
 
     return (
         <div className="BookCard">
-          <h4>Title: {title}</h4>
+          <h4>{title}</h4>
           <p> Author: {author}</p>
           <p> Published: {publishYear}</p>
           <p>{previewLength}</p>
@@ -21,4 +22,4 @@ function BookCard({ bookId, title, author, publishYear, bookDescription }) {
       );
     }
     
-    export default BookCard;
+  export default BookCard;

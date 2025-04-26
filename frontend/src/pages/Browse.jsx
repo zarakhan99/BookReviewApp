@@ -1,5 +1,6 @@
 import { useAppContext } from "../context/AppContext";
 import BookCard from "../components/BookCard"; 
+import "../styles/Browse.css";
 
 const Browse = () => {
 
@@ -32,4 +33,3 @@ const Browse = () => {
   };
   
   export default Browse;
-

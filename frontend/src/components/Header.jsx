@@ -3,12 +3,15 @@ import React, { useState } from "react";
  import "../styles/Header.css";
  import { useAppContext } from "../context/AppContext"; // Updated import
  import LoginRegisterForm from './LoginRegister';
+ import { FiSearch } from "../../node_modules/react-icons/fi";
  
  const Header = () => {
    const [isMenuOpen, setMenuOpen] = useState(false);
+   const [searchQuery, setSearchQuery] = useState("");
    const { isAuthenticated, logout, userRole } = useAppContext();
    const location = useLocation();
    const navigate = useNavigate();
+
 
    const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
@@ -21,6 +24,15 @@ import React, { useState } from "react";
   const handleLogout = () => {
     logout();
     navigate("/home");
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+      closeMenu();
+    }
   };
 
    return (
@@ -50,16 +62,17 @@ import React, { useState } from "react";
                                 MyBooks
                                 </Link>
                                 </li>
-                                <li>
-                                    <Link
-                                    to="/search"
-                                    className={location.pathname === "/search" ? "active" : ""}
-                                    onClick={closeMenu}
-                                    >
-                                        Search
-                                        </Link>
-                                        </li>
-                                        
+                                <li className={location.pathname === "/search" ? "active" : ""}
+                                >
+                                  <form onSubmit={handleSearch} className="search-form">
+                                    <input type="text" placeholder="Search Books"className="search-input" value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    />  
+                                    <button type="submit" className="search-button">
+                                      <FiSearch />
+                                      </button>
+                                      </form>
+                                      </li>
                                                 {/* Conditional rendering for Account/Logout/Profile */}
                                                 {isAuthenticated && (
                                                   <>
