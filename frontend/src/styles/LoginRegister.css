@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+.card.p-4  {
+    /* Add shadows to create the "card" effect */
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 230px;
+    height: 240px;
+    transition: 0.3s;
+    border-radius: 8px;
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This is key */
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 0; /* Remove gap between buttons */
+  }
+
+  .form-group {
+  }

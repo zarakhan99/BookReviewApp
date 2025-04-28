@@ -12,6 +12,7 @@ const Browse = () => {
     return (
       <div className="browse-container">
         <h2>Browse Books</h2>
+        <h3> </h3>
         {books && books.length > 0 ? (
           <div className="book-list">
             {books.map((book) => (

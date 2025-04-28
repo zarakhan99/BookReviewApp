@@ -74,6 +74,31 @@ export const AppProvider = ({ children }) => {
       }, []);
     };
 
+    //fetching genres
+    useEffect(() => {
+      const fetchGenre = async () => {
+        try {
+          setLoading(true);
+          
+          // Fetch books
+          const genres = await api.get('/genres');
+
+          setGenres(genres.data);
+          
+          setLoading(false);
+          
+        } catch (err) {
+          if (err.response?.status === 404) {
+            setError("No Genres found");
+          } else {
+            console.error("Fetch failed:", err);
+          }
+          setLoading(false);
+        }
+      };
+      
+      fetchGenre(); // Call inside useEffect
+    }, []);
 
   
     const login = (userData, token) => {
