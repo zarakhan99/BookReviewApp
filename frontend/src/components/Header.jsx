@@ -6,9 +6,10 @@ import React, { useState } from "react";
  import { FiSearch } from "../../node_modules/react-icons/fi";
  
  const Header = () => {
+  // Safe context access
+  const { isAuthenticated = false, logout = () => {}, userRole = null } = useAppContext() || {};
    const [isMenuOpen, setMenuOpen] = useState(false);
    const [searchQuery, setSearchQuery] = useState("");
-   const { isAuthenticated, logout, userRole } = useAppContext();
    const location = useLocation();
    const navigate = useNavigate();
 
@@ -107,7 +108,7 @@ import React, { useState } from "react";
                                                             </Link>
                                                           </li>
                                                         )}
-                                                        {!isAuthenticated && userRole === "Admin" && (
+                                                        {isAuthenticated && userRole === "Admin" && (
                                                           <>
                                                           <li>
                                                             <Link

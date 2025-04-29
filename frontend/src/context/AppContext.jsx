@@ -16,6 +16,7 @@ export const AppProvider = ({ children }) => {
 
     const [books, setBooks] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [filteredBooks, setFilteredBooks] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [myBooks, setMyBooks] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -100,7 +101,38 @@ export const AppProvider = ({ children }) => {
       fetchGenre(); // Call inside useEffect
     }, []);
 
-  
+    
+
+      
+        const fetchBooksByGenre = async (genreId) => {
+          try {
+            setLoading(true);
+            setError(null);
+
+            if (!genreId) {
+              setFilteredBooks([]);; 
+              setLoading(false);
+              return;
+            }
+            else {
+              const bGenres = await api.get(`/Books/ByGenre/${genreId}`);
+
+            setFilteredBooks(bGenres.data);
+
+            }
+            setLoading(false);
+          } catch (err) {
+            setFilteredBooks([]);
+            if (err.response?.status === 404) {
+              setError("No books found for this genre");
+            } else {
+              console.error("Fetch failed:", err);
+            }
+            setLoading(false);
+          }
+        };
+
+
     const login = (userData, token) => {
 
       const decodedToken = jwtDecode(token)
@@ -142,8 +174,8 @@ export const AppProvider = ({ children }) => {
           genres,
           reviews,
           myBooks,
-
-          bookReviews
+          books: filteredBooks.length > 0 ? filteredBooks : books,
+          fetchBooksByGenre,
         };
     
         return (

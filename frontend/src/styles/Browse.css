@@ -1,5 +1,7 @@
 * styles.css */
 * {
+  
+  height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,8 +10,64 @@
 
   .browse-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center; /* Centers horizontally */
     padding-top: 80px; /* Creates space below navbar */
+    margin-left: 250px;
     min-height: 100vh; /* Ensures full viewport height */
   }
+
+  .genre-sidebar {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 80px); 
+    margin-top: 80px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding: 6px 8px 6px 16px;
+    font-size: 20px;
+    background-color: #ffffff;
+    overflow-y: auto
+
+  }
+  .genre-sidebar h4 {
+    text-align: left;
+    padding-left: 13px;
+
+  }
+
+  .genre-list {
+    align-items: flex-start;
+    
+    display: flex;
+    flex-direction: column; /* Forces vertical stacking */
+    gap: 6px;
+  }
+
+  .genre-list button {
+    font-size: 13px;
+    background-color: #ffffff;
+    color: #2f7571;;
+    width: 100%;            /* Ensure buttons take full width of sidebar */
+    display: block; 
+    border: none;
+    text-align: left;
+  }
+
+/* Hover state for genre buttons */
+.genre-list button:hover {
+  text-decoration: underline;
+}
+.genre-list button:focus {
+  outline: none; /* Removes the default green outline */
+}
+
+/* Book grid container */
+.book-container {
+  flex-grow: 1
+}
+
+.book-list {
+  justify-content: center; /* Centers grid items when there's extra space */
+}
