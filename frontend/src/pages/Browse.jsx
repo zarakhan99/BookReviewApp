@@ -7,7 +7,7 @@ const Browse = () => {
 
     const { books, genres, fetchBooksByGenre, error, loading } = useAppContext();
   
-    if (loading) return <p>Loading books...</p>;
+    
 
     const [selectedGenreId, setSelectedGenreId] = useState(null);
   
@@ -46,10 +46,11 @@ const Browse = () => {
     
       <div className="book-container">
         <h2>Browse Books</h2>
-        {error && <p className="error-message">{error}</p>}
-  {loading ? (
-    <p>Loading books...</p>
-  ) : books && books.length > 0 ? (
+        {error ? (
+          <p className="error-message">{error}</p>
+        ) : loading ? (
+          <p>Loading books...</p>
+        ) : books && books.length > 0 ? (
           <div className="book-list">
             {books.map((book) => (
               <BookCard

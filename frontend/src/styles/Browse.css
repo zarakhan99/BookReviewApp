@@ -1,6 +1,5 @@
 * styles.css */
 * {
-  
   height: 100%;
     margin: 0;
     padding: 0;
@@ -11,7 +10,7 @@
   .browse-container {
     display: flex;
     flex-direction: row;
-    align-items: center; /* Centers horizontally */
+    align-items: flex-start; /* Centers horizontally */
     padding-top: 80px; /* Creates space below navbar */
     margin-left: 250px;
     min-height: 100vh; /* Ensures full viewport height */
@@ -34,6 +33,7 @@
   .genre-sidebar h4 {
     text-align: left;
     padding-left: 13px;
+    margin-bottom: 14px;
 
   }
 
@@ -70,4 +70,14 @@
 
 .book-list {
   justify-content: center; /* Centers grid items when there's extra space */
+}
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh; /* Or 100% if parent is constrained */
+  width: 100%;
+  text-align: center;
 }
