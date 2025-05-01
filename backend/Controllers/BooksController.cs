@@ -95,6 +95,33 @@ namespace BookReviewApi.Controllers
             }
         }
 
+        // GET: api/Books/ByGenre/{GenreId} 
+        // gets books by genre 
+        [HttpGet("book-genres/{bookId}")]
+        public async Task<ActionResult<IEnumerable<Genre>>> GetGenresByBookAsync(int bookId)
+        {
+            try
+            {
+                _logger.LogInformation("Fetching all genres."); //Logging the start of the operation
+                var genres = await _bookService.GetGenresByBookAsync(bookId); //Calls the book service to retrived books by genre id 
+
+                if (genres == null || !genres.Any()) // If no genres are found then a warning is logged and not found response is returned 
+                {
+                     _logger.LogWarning($"Genres with book ID {bookId} not found.");
+                    return NotFound($"Genred for book with book ID {bookId} not found.");
+                }
+                return Ok(genres); // Else returns a list of books by genre id with a 200 status code
+            }
+            catch (Exception ex)
+            {
+                //Error handling, logging a and returning a error if something goes wrong 
+                _logger.LogError(ex, "An error occurred while fetching genres for the book.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        
+
         [Authorize(Roles = "Admin")]
         // PUT: api/Books/5
         [HttpPut("{id}")]

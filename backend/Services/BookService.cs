@@ -33,6 +33,14 @@ namespace BookReviewApi.Services // Book interface is reposnsible for the Crud o
             
             return books; // Returns books that match genre id
         }
+        public async Task <IEnumerable<Genre>> GetGenresByBookAsync(int bookId) // Retrieves genres based on book id 
+        {
+            var genres = await _context.Genres
+            .Where(g => g.BookGenres.Any(b => b.BookId == bookId)) // Checks which genres are associated with the specific book id through bookgenre
+            .ToListAsync(); // Runs query and lists asynchronously
+            
+            return genres; // Returns genres that match book id
+        }
 
         public async Task AddBookAsync(Book book) // Adds a book to the database
         {
