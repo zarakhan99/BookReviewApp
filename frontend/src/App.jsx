@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Browse from './pages/Browse';
+import BookDetails from './pages/BookDetails';
 
 function App() {
   return (

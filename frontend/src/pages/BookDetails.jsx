@@ -1,12 +1,22 @@
 import { useState } from 'react';
+import { useEffect } from 'react'; 
 import { useAppContext } from "../context/AppContext";
 import { useParams } from 'react-router-dom';
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 const BookDetails = () => {
 
-    const { BookDetails, genresForBook, reviews, loading, error } = useAppContext();
+    const { bookDetails, genresForBook, reviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, loading, error } = useAppContext();
 
    const {bookId} = useParams();
+
+   useEffect(() => {
+    if (bookId) {
+      fetchBookDetails(bookId);
+      fetchGenresForBook(bookId);
+      fetchBookReviews(bookId);
+    }
+  }, [bookId]);
 
    const calcAverageRating = () => {
 
@@ -40,19 +50,33 @@ const BookDetails = () => {
 
     }
     
+    console.log("bookDetails:", bookDetails);
 
- 
    return (
-    <div>
-        <h2>{BookDetails.title}</h2>
-        <h3>{BookDetails.author}</h3>
+    <div className="book-details">
+        <h2>{bookDetails.title}</h2>
+        <h3>{bookDetails.author}</h3>
+        <div className="book-average-rating">
+        {calcAverageRating()}
+        </div>
+        <div className="book-genres">
+        {genresForBook.map((genre) => (
+            <span> 
+                key={genre.genreId}
+                {genre.genreName}
+                </span>
+                 ))}
+        </div>
+        <div className= "book-description"> 
+        <p>{bookDetails.bookDescription}</p>
+        </div>
+        <div className="book-average-rating">
+            <h3>Reviews & Ratings</h3>
+       
 
-        <p>{BookDetails.description}</p>
-
+        </div>
     </div>
-   )
+   );
+};
 
-   
-
-
-}
+export default BookDetails;

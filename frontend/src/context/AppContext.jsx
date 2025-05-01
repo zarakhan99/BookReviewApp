@@ -51,8 +51,7 @@ export const AppProvider = ({ children }) => {
     }, []);
       
     //fetch specific books using their Ids
-    useEffect(() => {
-      const fetchBookDetails = async () => {
+      const fetchBookDetails = async (bookId) => {
         try {
           setLoading(true);
           
@@ -72,19 +71,15 @@ export const AppProvider = ({ children }) => {
           setLoading(false);
         }
       };
-      
-      fetchBookDetails(); // Call inside useEffect
-    }, [bookId]);
 
     //get genres for a specific book
 
-    useEffect(() => {
-      const fetchGenresForBook = async () => {
+      const fetchGenresForBook = async (bookId) => {
         try {
           setLoading(true);
           
           
-          const bGenres = await api.get(`/book-genres/${bookId}`);
+          const bGenres = await api.get(`Books/book-genres/${bookId}`);
 
           setGenresForBook(bGenres.data);
           
@@ -99,19 +94,14 @@ export const AppProvider = ({ children }) => {
           setLoading(false);
         }
       };
-      
-      fetchGenresForBook(); // Call inside useEffect
-    }, [bookId]);
 
       
     //get reviews for specific book
-   
-      useEffect (() => {
-        const fetchBookReviews = async () => {
+        const fetchBookReviews = async (bookId) => {
           try {
             setLoading(true);
 
-            const bookReviews = await api.get(`/ByBook/${bookId}`);
+            const bookReviews = await api.get(`Reviews/ByBook/${bookId}`);
 
             setReviews(bookReviews.data);
 
@@ -125,9 +115,7 @@ export const AppProvider = ({ children }) => {
             setLoading(false);
           }
         };
-        
-        fetchBookReviews(); // Call inside useEffect
-      }, [bookId]);
+
   
 
     //fetching genres
@@ -214,28 +202,30 @@ export const AppProvider = ({ children }) => {
     };
   
     const value = {
-          user,
-          token,
-          login,
-          logout,
-          isAuthenticated, 
-          userId,
-          userRole,
-          userEmail,
-
-          books,
-          bookDetails,
-          loading,
-          error,
-          genres,
-          reviews,
-          myBooks,
-          books: filteredBooks.length > 0 ? filteredBooks : books,
-          genresForBook,
-          fetchBooksByGenre,
-          fetchBookDetails,
-          bookReviews
-        };
+      user,
+      token,
+      login,
+      logout,
+      isAuthenticated,
+      userId,
+      userRole,
+      userEmail,
+    
+      books,
+      bookDetails,
+      loading,
+      error,
+      genres,
+      reviews,
+      myBooks,
+      books: filteredBooks.length > 0 ? filteredBooks : books,
+      genresForBook,
+    
+      fetchBooksByGenre,
+      fetchBookDetails,
+      fetchBookReviews,
+      fetchGenresForBook
+    };
     
         return (
           <AppContext.Provider value={value}>
