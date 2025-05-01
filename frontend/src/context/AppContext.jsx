@@ -15,6 +15,7 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(null);
 
     const [books, setBooks] = useState([]);
+    const [BookDetails, setBookDetails] = useState([]);
     const [genres, setGenres] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [reviews, setReviews] = useState([]);
@@ -48,17 +49,42 @@ export const AppProvider = ({ children }) => {
       fetchBookData(); // Call inside useEffect
     }, []);
       
+    useEffect(() => {
+      const fetchBookDetails = async () => {
+        try {
+          setLoading(true);
+          
+          // Fetch books
+          const bDetails = await api.get(`/books/${bookId}`);
+
+          setBookDetails(bDetails.data);
+          
+          setLoading(false);
+          
+        } catch (err) {
+          if (err.response?.status === 404) {
+            setError("No book details found");
+          } else {
+            console.error("Fetch failed:", err);
+          }
+          setLoading(false);
+        }
+      };
+      
+      fetchBookDetails(); // Call inside useEffect
+    }, [bookId]);
+      
     //get reviews for specific book
-    const bookReviews = ({bookId, onClose}) => {
+   
 
       useEffect (() => {
         const fetchBookReviews = async () => {
           try {
             setLoading(true);
 
-            const bReviews = await api.get(`/ByBook/${bookId}`);
+            const bookReviews = await api.get(`/ByBook/${bookId}`);
 
-            setReviews(response.data);
+            setReviews(bookReviews.data);
 
             setLoading(false);
           } catch (err) {
@@ -72,8 +98,8 @@ export const AppProvider = ({ children }) => {
         };
         
         fetchBookReviews(); // Call inside useEffect
-      }, []);
-    };
+      }, [bookId]);
+  
 
     //fetching genres
     useEffect(() => {
@@ -169,6 +195,7 @@ export const AppProvider = ({ children }) => {
           userEmail,
 
           books,
+          BookDetails,
           loading,
           error,
           genres,
@@ -176,6 +203,8 @@ export const AppProvider = ({ children }) => {
           myBooks,
           books: filteredBooks.length > 0 ? filteredBooks : books,
           fetchBooksByGenre,
+          fetchBookDetails,
+          bookReviews
         };
     
         return (

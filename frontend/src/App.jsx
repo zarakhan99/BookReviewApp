@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/browse" element={<Browse />} />
+        <Route path="/books/:bookId" element={<BookDetails />} />
         <Route path="/account" element={<Account />} />
         <Route path="/" element={<Home />} />
         {/* Add a fallback route for undefined paths */}
