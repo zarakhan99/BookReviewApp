@@ -16,6 +16,7 @@ export const AppProvider = ({ children }) => {
 
     const [books, setBooks] = useState([]);
     const [BookDetails, setBookDetails] = useState([]);
+    const [genresForBook, setGenresForBook]= useState([]);
     const [genres, setGenres] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [reviews, setReviews] = useState([]);
@@ -49,12 +50,13 @@ export const AppProvider = ({ children }) => {
       fetchBookData(); // Call inside useEffect
     }, []);
       
+    //fetch specific books using their Ids
     useEffect(() => {
       const fetchBookDetails = async () => {
         try {
           setLoading(true);
           
-          // Fetch books
+          
           const bDetails = await api.get(`/books/${bookId}`);
 
           setBookDetails(bDetails.data);
@@ -73,10 +75,37 @@ export const AppProvider = ({ children }) => {
       
       fetchBookDetails(); // Call inside useEffect
     }, [bookId]);
+
+    //get genres for a specific book
+
+    useEffect(() => {
+      const fetchGenresForBook = async () => {
+        try {
+          setLoading(true);
+          
+          
+          const bGenres = await api.get(`/book-genres/${bookId}`);
+
+          setGenresForBook(bGenres.data);
+          
+          setLoading(false);
+          
+        } catch (err) {
+          if (err.response?.status === 404) {
+            setError("No book details found");
+          } else {
+            console.error("Fetch failed:", err);
+          }
+          setLoading(false);
+        }
+      };
+      
+      fetchGenresForBook(); // Call inside useEffect
+    }, [bookId]);
+
       
     //get reviews for specific book
    
-
       useEffect (() => {
         const fetchBookReviews = async () => {
           try {
