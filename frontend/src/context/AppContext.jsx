@@ -15,7 +15,7 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(null);
 
     const [books, setBooks] = useState([]);
-    const [BookDetails, setBookDetails] = useState([]);
+    const [bookDetails, setBookDetails] = useState([]);
     const [genresForBook, setGenresForBook]= useState([]);
     const [genres, setGenres] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
@@ -224,13 +224,14 @@ export const AppProvider = ({ children }) => {
           userEmail,
 
           books,
-          BookDetails,
+          bookDetails,
           loading,
           error,
           genres,
           reviews,
           myBooks,
           books: filteredBooks.length > 0 ? filteredBooks : books,
+          genresForBook,
           fetchBooksByGenre,
           fetchBookDetails,
           bookReviews
