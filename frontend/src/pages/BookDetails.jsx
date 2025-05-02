@@ -6,7 +6,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 const BookDetails = () => {
 
-    const { bookDetails, genresForBook, reviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, loading, error } = useAppContext();
+    const { bookDetails, genresForBook, bookReviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, loading, error } = useAppContext();
 
    const {bookId} = useParams();
 
@@ -20,9 +20,9 @@ const BookDetails = () => {
 
    const calcAverageRating = () => {
 
-    if (reviews && reviews.length > 0)
+    if (bookReviews && bookReviews.length > 0)
         {
-            const bookRatings = reviews.map((review) => review.rating);
+            const bookRatings = bookReviews.map((review) => review.rating);
             
             const ratingSum = bookRatings.reduce((acc, rating) => acc + rating, 0);
             
@@ -90,8 +90,8 @@ const BookDetails = () => {
         </div>
         <div className="book-reviews">
             <h3>Reviews & Ratings</h3>
-            {reviews.length > 0 ? (
-                reviews.map(review => (
+            {bookReviews.length > 0 ? (
+                bookReviews.map(review => (
                     <div key={review.reviewId} className="review-card">
                         <div className="review-meta">
                             <span className="review-member-id">

@@ -19,7 +19,7 @@ export const AppProvider = ({ children }) => {
     const [genresForBook, setGenresForBook]= useState([]);
     const [genres, setGenres] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
-    const [reviews, setReviews] = useState([]);
+    const [bookReviews, setBookReviews] = useState([]);
     const [myBooks, setMyBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -100,13 +100,15 @@ export const AppProvider = ({ children }) => {
         const fetchBookReviews = async (bookId) => {
           try {
             setLoading(true);
+            setBookReviews([]);
 
             const bookReviews = await api.get(`Reviews/ByBook/${bookId}`);
 
-            setReviews(bookReviews.data);
+            setBookReviews(bookReviews.data);
 
             setLoading(false);
           } catch (err) {
+            setBookReviews([]);
             if (err.response?.status === 404) {
               setError("No reviews found for book");
             } else {
@@ -216,7 +218,7 @@ export const AppProvider = ({ children }) => {
       loading,
       error,
       genres,
-      reviews,
+      bookReviews,
       myBooks,
       books: filteredBooks.length > 0 ? filteredBooks : books,
       genresForBook,
