@@ -49,6 +49,25 @@ const BookDetails = () => {
      }
 
     }
+
+    const UserStarRating = (review) => {
+
+    const reviewStars = []
+
+    for(let i = 1; i <= 5; i++)
+    {
+        if (review.rating >= i) {
+            reviewStars.push(<FaStar key={i} />);
+          } else if (review.rating >= i - 0.5) {
+            reviewStars.push(<FaStarHalfAlt key={i} />);
+          } else {
+            reviewStars.push(<FaRegStar key={i} />);
+          }
+        }
+        return reviewStars;
+    }
+    
+    
     
     console.log("bookDetails:", bookDetails);
 
@@ -61,8 +80,7 @@ const BookDetails = () => {
         </div>
         <div className="book-genres">
         {genresForBook.map((genre) => (
-            <span> 
-                key={genre.genreId}
+            <span key={genre.genreId}> 
                 {genre.genreName}
                 </span>
                  ))}
@@ -70,13 +88,31 @@ const BookDetails = () => {
         <div className= "book-description"> 
         <p>{bookDetails.bookDescription}</p>
         </div>
-        <div className="book-average-rating">
+        <div className="book-reviews">
             <h3>Reviews & Ratings</h3>
-       
+            {reviews.length > 0 ? (
+                reviews.map(review => (
+                    <div key={review.reviewId} className="review-card">
+                        <div className="review-meta">
+                            <span className="review-member-id">
+                                User: {review.memberId}
+                                </span>
+                            <span className="review-date">
+                                {new Date(review.reviewDate).toLocaleDateString()}
+                                </span>
+                                </div>
+                                <div className="review-stars">
+                                    {UserStarRating(review)}
+                                </div>
+                                <p className="review-text">{review.reviewComment}</p>
+                                </div>
+  ))
+) : (
+  <p className="no-reviews">No reviews yet. Be the first to review!</p>
+)}
+</div>
+</div>
 
-        </div>
-    </div>
-   );
-};
+)};
 
 export default BookDetails;
