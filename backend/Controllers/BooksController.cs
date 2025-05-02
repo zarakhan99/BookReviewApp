@@ -108,7 +108,7 @@ namespace BookReviewApi.Controllers
                 if (genres == null || !genres.Any()) // If no genres are found then a warning is logged and not found response is returned 
                 {
                      _logger.LogWarning($"Genres with book ID {bookId} not found.");
-                    return NotFound($"Genred for book with book ID {bookId} not found.");
+                    return NotFound($"Genres for book with book ID {bookId}, not found.");
                 }
                 return Ok(genres); // Else returns a list of books by genre id with a 200 status code
             }
