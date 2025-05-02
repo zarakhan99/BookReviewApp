@@ -7,7 +7,7 @@ import React, { useState } from "react";
  
  const Header = () => {
   // Safe context access
-  const { isAuthenticated = false, logout = () => {}, userRole = null } = useAppContext() || {};
+  const { isAuthenticated = false, logout = () => {}, userRole = null, clearReviews, fetchBooksByGenre} = useAppContext() || {};
    const [isMenuOpen, setMenuOpen] = useState(false);
    const [searchQuery, setSearchQuery] = useState("");
    const location = useLocation();
@@ -50,7 +50,11 @@ import React, { useState } from "react";
             <ul className={`menu ${isMenuOpen ? "active" : ""}`}>
                 <li>
                     <Link to="/browse" className={location.pathname === "/browse" ? "active" : ""}
-                    onClick={closeMenu}
+                    onClick={() => {
+                      clearReviews();
+                      fetchBooksByGenre(null); // ← make sure this is available in context
+                      closeMenu();
+                    }}
                     >
                         Browse
                         </Link>

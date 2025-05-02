@@ -177,6 +177,9 @@ export const AppProvider = ({ children }) => {
           }
         };
 
+        const clearReviews = () => {
+          setBookReviews([]);
+        };
 
     const login = (userData, token) => {
 
@@ -222,7 +225,8 @@ export const AppProvider = ({ children }) => {
       myBooks,
       books: filteredBooks.length > 0 ? filteredBooks : books,
       genresForBook,
-    
+
+      clearReviews,
       fetchBooksByGenre,
       fetchBookDetails,
       fetchBookReviews,

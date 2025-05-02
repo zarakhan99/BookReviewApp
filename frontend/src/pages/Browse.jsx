@@ -1,20 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
 import BookCard from "../components/BookCard"; 
 import "../styles/Browse.css";
 
 const Browse = () => {
 
-    const { books, genres, fetchBooksByGenre, error, loading } = useAppContext();
+    const { books, genres, fetchBooksByGenre, error, loading, clearReviews, clearGenreFilter} = useAppContext();
   
     
 
     const [selectedGenreId, setSelectedGenreId] = useState(null);
   
     const handleGenreClick = (genreId) => {
-      setSelectedGenreId(genreId)
-      fetchBooksByGenre(genreId);
+      setSelectedGenreId(genreId);
+
+      if (genreId === null) {
+        // Clear filter when "All Genres" is selected
+        fetchBooksByGenre(null); // or skip this line if it's redundant
+      } else {
+        fetchBooksByGenre(genreId);
+      }
     }
+
+    // useEffect(() => {
+    //   clearReviews();
+    //   clearGenreFilter();  // This clears filteredBooks in your context
+    // }, []);
 
     return (
       <div className="browse-container">
