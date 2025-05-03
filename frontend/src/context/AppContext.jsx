@@ -184,6 +184,8 @@ export const AppProvider = ({ children }) => {
     const login = (userData, token) => {
 
       const decodedToken = jwtDecode(token)
+
+      console.log('User JWT Token:', token);
     
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUser(userData);

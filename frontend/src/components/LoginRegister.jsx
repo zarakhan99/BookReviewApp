@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { loginUser, registerUser } from '../services/AuthService';
 import { useAppContext } from '../context/AppContext';
 
@@ -9,6 +10,7 @@ const LoginRegisterForm = () =>
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => { 
         event.preventDefault();
@@ -17,6 +19,7 @@ const LoginRegisterForm = () =>
             
             if (userResponse.token) {
                 login(userResponse.userData, userResponse.token);
+                navigate('/');
             } 
         } catch (error) {
             if (error.response?.status === 401) {
@@ -34,6 +37,7 @@ const LoginRegisterForm = () =>
             
             if (userResponse.token) {
                 login(userResponse.userData, userResponse.token);
+                navigate('/');
             } 
         } catch (error) {
             if (error.response?.status === 400) {

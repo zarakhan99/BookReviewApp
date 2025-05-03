@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { useEffect } from 'react'; 
 import { useAppContext } from "../context/AppContext";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import "../styles/BookDetails.css";
+
 
 const BookDetails = () => {
 
-    const { bookDetails, genresForBook, bookReviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, loading, error } = useAppContext();
+    const { bookDetails, genresForBook, bookReviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, isAuthenticated = false } = useAppContext();
 
    const {bookId} = useParams();
+
+   const navigate = useNavigate();
 
    useEffect(() => {
     if (bookId) {
@@ -26,7 +30,7 @@ const BookDetails = () => {
             
             const ratingSum = bookRatings.reduce((acc, rating) => acc + rating, 0);
             
-            const averageRating = ratingSum /  bookRatings.length;
+            const averageRating = (ratingSum / bookReviews.length).toFixed(1);
 
             const stars = [];
 
@@ -50,7 +54,7 @@ const BookDetails = () => {
 
     }
 
-    const UserStarRating = (review) => {
+    const getUserStarRating = (review) => {
 
     const reviewStars = []
 
@@ -67,29 +71,42 @@ const BookDetails = () => {
         return reviewStars;
     }
     
+    const handleWriteReviewClick = () => {
+      if (isAuthenticated)
+      {
+        navigate(`/review/${bookId}`)
+      }
+      else
+      {
+        navigate(`/account`)
+      }
+    }
     
     
     console.log("bookDetails:", bookDetails);
 
    return (
-    <div className="book-details">
-        <h2>{bookDetails.title}</h2>
-        <h3>{bookDetails.author}</h3>
+    <div className="book-details-container">
+      {/* <img src={bookDetails.coverImageUrl} alt={bookDetails.title} className="book-cover" /> */}
+        <h2 className="book-title">{bookDetails.title}</h2>
+        <h3 className="book-author">{bookDetails.author}</h3>
         <div className="book-average-rating">
         {calcAverageRating()}
         </div>
         <div className="book-genres">
-        {genresForBook.map((genre) => (
-            <span key={genre.genreId}> 
-                {genre.genreName}
-                </span>
-                 ))}
+          Genres:&nbsp;
+          {genresForBook.map(genre => genre.genreName).join(", ")}
         </div>
         <div className= "book-description"> 
         <p>{bookDetails.bookDescription}</p>
         </div>
         <div className="book-reviews">
             <h3>Reviews & Ratings</h3>
+            <h4> What do you think?</h4>
+            <button className ="review-button" onClick={handleWriteReviewClick}>
+              Write a Review
+              </button>
+            
             {bookReviews.length > 0 ? (
                 bookReviews.map(review => (
                     <div key={review.reviewId} className="review-card">
@@ -102,7 +119,7 @@ const BookDetails = () => {
                                 </span>
                                 </div>
                                 <div className="review-stars">
-                                    {UserStarRating(review)}
+                                    {getUserStarRating(review)}
                                 </div>
                                 <p className="review-text">{review.reviewComment}</p>
                                 </div>
