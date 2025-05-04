@@ -118,6 +118,37 @@ export const AppProvider = ({ children }) => {
           }
         };
 
+        const submitReview = async (userId, bookId, rating, reviewComment ) => {
+          try
+          {
+            setLoading(true);
+
+            const reviewInfo = {
+              memberId: userId,
+              bookId: bookId,
+              rating: rating,
+              reviewComment: reviewComment
+            };
+
+            const userReview = await api.post('/Reviews', reviewInfo, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+
+          console.log('Review submitted successfully:', reviewInfo.data);
+
+          setLoading(false);
+
+          return response.data; // Return the new review data
+        } catch (err) {
+          console.error("Failed to submit review:", err);
+          setLoading(false);
+          setError("Failed to submit review.");
+          return null;
+        }
+      };
+
   
 
     //fetching genres
@@ -146,9 +177,7 @@ export const AppProvider = ({ children }) => {
       fetchGenre(); // Call inside useEffect
     }, []);
 
-    
-
-      
+    //filteeing books by their genres
         const fetchBooksByGenre = async (genreId) => {
           try {
             setLoading(true);
@@ -232,7 +261,8 @@ export const AppProvider = ({ children }) => {
       fetchBooksByGenre,
       fetchBookDetails,
       fetchBookReviews,
-      fetchGenresForBook
+      fetchGenresForBook,
+      submitReview
     };
     
         return (
