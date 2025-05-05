@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppContext } from "../context/AppContext";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 
 const WriteReview= () => {
 
     const { userId, isAuthenticated = false, submitReview } = useAppContext();
 
-    const [rating, setRating] = useState();
-    const [reviewComment, setReviewComment] = useState();
-    const [isSubmitting, setIsSubmitting] = useState();
+    const [rating, setRating] = useState(0);
+    const [reviewComment, setReviewComment] = useState("");
+    //const [isSubmitting, setIsSubmitting] = useState();
 
     const navigate = useNavigate();
     const {bookId} = useParams();
@@ -27,7 +28,8 @@ const WriteReview= () => {
     }, [isAuthenticated]);
     
 
-    const handleReviewsubmission = async () => {
+    const handleReviewsubmission = async (e) => {
+        e.preventDefault();
 
         if (!rating || rating < 1 || rating > 5 || !reviewComment || reviewComment.length < 5)
         {
@@ -70,30 +72,30 @@ const WriteReview= () => {
             return stars;
         }
 
-    return
-    (
+   return (
+
         <div className ="reviews-wrapper">
             <div className='title'> 
                 <h3>Write a Review!</h3>
             </div>
-            <form className = "review-form">
-            <label for="memberId">First Name</label>
-            <label for="comment">What did you think?</label>
-            <textarea id="userComment" name="subject" placeholder="Enter review..."> 
-                <input onChange={reviewComment} > </input>
+            <form className = "review-form" onSubmit={handleReviewsubmission}>
+            <label for="memberId">Member Id</label>
+            <input type="text" id="memberId" name="member-id" value={userId} readOnly></input>
+            <label for="comment">What did you think? </label>
+            <div className='star-rating'> 
+            {userStarRating()}
+            </div>
+            <textarea id="userComment" name="subject" value = {reviewComment} placeholder="Enter review..."
+                onChange={(event) => setReviewComment(event.target.value)}>
             </textarea> 
             <button type="submit" className="button">
                 Post
-                onClick={() => handleReviewsubmission()}
-
             </button>
+            
             </form>
-            
-            
         </div>
         
-
-    )
+   );
 };
 
 export default WriteReview;
