@@ -215,12 +215,13 @@ export const AppProvider = ({ children }) => {
       const decodedToken = jwtDecode(token)
 
       console.log('User JWT Token:', token);
+      console.log(decodedToken)
     
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUser(userData);
       setToken(token);
-      setUserId(decodedToken.nameid);
-      setUserRole(decodedToken.role);
+      setUserId(decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+      setUserRole(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]);
       setUserEmail(decodedToken.sub);
 
       setIsAuthenticated(true);
