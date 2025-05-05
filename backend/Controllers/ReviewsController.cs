@@ -99,6 +99,32 @@ namespace BookReviewApi.Controllers
             
         }
 
+        // Get api/Reviews/ByUser/1
+        [HttpGet("ByUser/{memberId}")]
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByUser(string memberId)
+        {
+            try
+            {
+                _logger.LogInformation("Fetching all reviews."); //Loggs the start of the operation 
+                var reviews = await _reviewService.GetReviewsByUserAsync(memberId); //Calls service to get reviews by member id
+
+                if (reviews == null || !reviews.Any()) // if no reviews are found then a warning is logged and a not found is returned 
+                {
+                     _logger.LogWarning($"Reviews for books with member ID {memberId} not found.");
+                    return NotFound($"Reviews for books with member ID {memberId} not found.");
+                }
+                return Ok(reviews); // Returns a list of reviews for the member id
+
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions that occur during the process and returns 500 internal error status code 
+                _logger.LogError(ex, "An error occurred while fetching reviews for the book by member ID.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+            
+        }
+
         [Authorize(Roles = "Admin")]
         // PUT: api/Reviews/5
         [HttpPut("{id}")]

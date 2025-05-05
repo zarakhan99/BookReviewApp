@@ -31,6 +31,13 @@ namespace BookReviewApi.Services  //BookGenre interface is reposnsible for the C
             .Where(r => r.BookId == bookId) // Checks if reviews are associated with a specific book id
             .ToListAsync(); // Runs query and lists asynchronously
         }
+
+        public async Task<IEnumerable<Review>> GetReviewsByUserAsync(string memberId) // Gets reviews for specific book using book id
+        {
+            return await _context.Reviews
+            .Where(r => r.MemberId == memberId) // Checks if reviews are associated with a specific book id
+            .ToListAsync(); // Runs query and lists asynchronously
+        }
         
         public async Task AddReviewAsync(Review review) // Adds a review to the database
         {
