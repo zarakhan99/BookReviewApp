@@ -1,21 +1,26 @@
 * styles.css */
 * {
-  height: 100%;
-    margin: 0;
-    padding: 0;
+    height: 100%;
+    margin: 10;
+    padding: 10;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 
   }
-
   .reviews-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
+    margin-top: 90px;
+    
+    width: 880px;
+    height: 500px;
+    padding: 10px 10px 10px 10px;
     background-color: #fdfdfd;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+  .reviews-wrapper title{
+    margin-bottom: 10px;
+  }
+  
   .review-form label {
     display: block;
     margin-top: 1rem;
@@ -26,7 +31,7 @@
   
   .review-form input[type="text"],
   .review-form textarea {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -53,9 +58,10 @@
   
   .button {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    background-color: #4caf50;
+    background-color: #2f7571;
     color: white;
     border: none;
     border-radius: 8px;
@@ -64,6 +70,6 @@
   }
   
   .button:hover {
-    background-color: #45a049;
+    background-color: #296764;
   }  
   
