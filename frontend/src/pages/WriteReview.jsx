@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppContext } from "../context/AppContext";
 import { FaStar, FaRegStar } from "react-icons/fa";
+import "../styles/WriteReview.css";
 
 
 const WriteReview= () => {
 
     const { userId, isAuthenticated = false, submitReview } = useAppContext();
+
+    console.log("userId from AppContext:", userId);
 
     const [rating, setRating] = useState(0);
     const [reviewComment, setReviewComment] = useState("");

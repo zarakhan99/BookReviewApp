@@ -1,0 +1,69 @@
+* styles.css */
+* {
+  height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+
+  }
+
+  .reviews-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .review-form label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .review-form input[type="text"],
+  .review-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .review-form input[readonly] {
+    background-color: #e9e9e9;
+    color: #666;
+  }
+  
+  .star-rating {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: gold;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .star-rating:hover {
+    color: orange;
+  }
+  
+  .button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }  
+  
