@@ -118,6 +118,7 @@ export const AppProvider = ({ children }) => {
           }
         };
 
+        //Submit a review 
         const submitReview = async (userId, bookId, rating, reviewComment ) => {
           try
           {
@@ -136,11 +137,11 @@ export const AppProvider = ({ children }) => {
               }
             });
 
-          console.log('Review submitted successfully:', reviewInfo.data);
+          console.log('Review submitted successfully:', userReview.data);
 
           setLoading(false);
 
-          return response.data; // Return the new review data
+          return userReview.data; // Return the new review data
         } catch (err) {
           console.error("Failed to submit review:", err);
           setLoading(false);

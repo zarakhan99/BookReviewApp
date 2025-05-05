@@ -50,6 +50,8 @@ const WriteReview= () => {
         {
             alert("Error! Review submission unsuccessful.");
         }
+
+        console.log("Review Submitted:", userId, bookId, rating, reviewComment);
        
     }
 

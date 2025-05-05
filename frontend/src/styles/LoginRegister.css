@@ -14,7 +14,7 @@
     border-radius: 8px;
     font-size: 12px;
 
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: space-between; /* This is key */
   }
