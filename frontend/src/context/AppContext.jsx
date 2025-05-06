@@ -20,6 +20,7 @@ export const AppProvider = ({ children }) => {
     const [genres, setGenres] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [bookReviews, setBookReviews] = useState([]);
+    const [userReviews, setUserReviews] = useState([]);
     const [myBooks, setMyBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -150,7 +151,25 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-  
+      //fetch reviews by specific user using Id
+      const fetchReviewsByUser = async (userId) => {
+        try {
+          setLoading(true);
+
+          const reviewsByUser = await api.get(`Reviews/ByUser/${userId}`);
+
+          setUserReviews(reviewsByUser.data);
+
+          setLoading(false);
+        } catch (err) {
+          if (err.response?.status === 404) {
+            setError("No reviews found for this user");
+          } else {
+            console.error("Fetch failed:", err);
+          }
+          setLoading(false);
+        }
+      };
 
     //fetching genres
     useEffect(() => {
@@ -178,7 +197,7 @@ export const AppProvider = ({ children }) => {
       fetchGenre(); // Call inside useEffect
     }, []);
 
-    //filteeing books by their genres
+    //filtering books by their genres
         const fetchBooksByGenre = async (genreId) => {
           try {
             setLoading(true);
@@ -258,13 +277,15 @@ export const AppProvider = ({ children }) => {
       myBooks,
       books: filteredBooks.length > 0 ? filteredBooks : books,
       genresForBook,
+      userReviews,
 
       clearReviews,
       fetchBooksByGenre,
       fetchBookDetails,
       fetchBookReviews,
       fetchGenresForBook,
-      submitReview
+      submitReview,
+      fetchReviewsByUser
     };
     
         return (

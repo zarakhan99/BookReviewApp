@@ -8,7 +8,7 @@ import "../styles/BookDetails.css";
 
 const BookDetails = () => {
 
-    const { bookDetails, genresForBook, bookReviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, isAuthenticated = false } = useAppContext();
+   const { bookDetails, genresForBook, bookReviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, isAuthenticated = false } = useAppContext();
 
    const {bookId} = useParams();
 

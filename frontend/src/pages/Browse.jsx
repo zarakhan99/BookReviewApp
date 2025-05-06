@@ -5,7 +5,7 @@ import "../styles/Browse.css";
 
 const Browse = () => {
 
-    const { books, genres, fetchBooksByGenre, error, loading, clearReviews, clearGenreFilter} = useAppContext();
+    const { books, genres, fetchBooksByGenre, error, loading} = useAppContext();
   
     
 
@@ -21,11 +21,6 @@ const Browse = () => {
         fetchBooksByGenre(genreId);
       }
     }
-
-    // useEffect(() => {
-    //   clearReviews();
-    //   clearGenreFilter();  // This clears filteredBooks in your context
-    // }, []);
 
     return (
       <div className="browse-container">
