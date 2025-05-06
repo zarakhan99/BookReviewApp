@@ -44,7 +44,7 @@ const WriteReview= () => {
 
         if (userReview)
         {
-            navigate(`/book/${bookId}`);
+            navigate(`/books/${bookId}`);
         }
         else
         {

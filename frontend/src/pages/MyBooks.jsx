@@ -8,9 +8,11 @@ import "../styles/MyBooks.css";
 
 const myBooks = () => {
 
-    const { books, userId, userReviews, fetchReviewsByUser,fetchBookDetails, isAuthenticated = false } = useAppContext();
+    const { books, userId, userReviews, fetchReviewsByUser, isAuthenticated = false } = useAppContext();
 
     const[filteredBooks, setFilteredBooks] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -24,39 +26,39 @@ const myBooks = () => {
     
         }, [isAuthenticated]);
 
-        const userBookReviews = () => {
-            if (userReviews.length > 0 && books.length > 0)
-            {
-                const reviewBookId = userReviews.map((review) => review.bookId);
-                
-                const filterById = books.filter((book) => reviewBookId.includes(book.bookId));
-
-                setFilteredBooks(filterById);
-
-            }
-         };
-        
         useEffect(() => {
             if (userId)
                 {
                     fetchReviewsByUser(userId)
                 }
-                userBookReviews()
         },[userId]);
 
-        useEffect(() => {
-            if (userReviews.length > 0 && books.length > 0) {
-                // Once reviews are fetched and books are available, filter the books
-                userBookReviews();
+        const userBookReviews = () => {
+            if (userReviews.length > 0 && books.length > 0)
+            {
+                const filterById = books.filter((book) => 
+                userReviews.some((review) => review.bookId === book.bookId));
+
+                setFilteredBooks(filterById);
+
             }
-        }, [userReviews, books]);
+            else 
+            {
+                setFilteredBooks([]); // Clear if no data
+            }
+         };
+
+        useEffect(() => {
+            userBookReviews();
+          }, [userReviews, books]);
         
         return (
             <div className="myBooks-wrapper">
               <div className="userBooksRow">
-              {filteredBooks && filteredBooks.length > 0 ? (
+              {filteredBooks.length > 0 ? (
                 filteredBooks.map((book) => {
                     const review = userReviews.find((r) => r.bookId === book.bookId);
+                    if (!review) return null;
                     return (
                     <div className="book" key={book.bookId}>
                         <h4>{book.title}</h4>
