@@ -8,6 +8,7 @@ const myBooks = () => {
 
     const { books, userId, userReviews, fetchReviewsByUser,fetchBookDetails, isAuthenticated = false } = useAppContext();
 
+    const[filteredBooks, setFilteredBooks] = useState();
 
     useEffect(() => {
 
@@ -20,27 +21,39 @@ const myBooks = () => {
         isAuthorized();
     
         }, [isAuthenticated]);
+
+        const userBookReviews = () => {
+
+            const reviewBookId = userReviews.map((review) => review.bookId);
+     
+            const filterById = books.filter((book) => reviewBookId.includes(book.bookId));
+            
+            setFilteredBooks(filterById);
+         };
         
         useEffect(() => {
             if (userId)
                 {
                     fetchReviewsByUser(userId)
                 }
+                userBookReviews()
         },[userId]);
 
-    const userBookReviews = () => {
+        useEffect(() => {
+            if (userReviews.length > 0 && books.length > 0) {
+                // Once reviews are fetched and books are available, filter the books
+                userBookReviews();
+            }
+        }, [userReviews, books]);
 
-       const reviewBookId = userReviews.map((review) => review.bookId);
+        return 
+        (
+            <div className = "myBooks-wrapper">
+                
 
-       const filteredBooks = books.filter(reviewBookId.includes(book.bookId));
-    
-    };
 
+            </div>
+           
 
-    return
-    ( <div>
-        <h3> Your Reviews</h3>
-    </div>
-    
-    );
+        );
 };
