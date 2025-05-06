@@ -15,12 +15,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/books/:bookId" element={<BookDetails />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/" element={<Home />} />
         <Route path="/review/:bookId" element={<WriteReview />} />
         <Route path="/my-books" element={<MyBooks />} />
+        
         {/* Fallback route for undefined paths */}
         <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
