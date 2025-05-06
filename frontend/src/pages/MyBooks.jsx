@@ -8,7 +8,7 @@ const myBooks = () => {
 
     const { books, userId, userReviews, fetchReviewsByUser,fetchBookDetails, isAuthenticated = false } = useAppContext();
 
-    const[filteredBooks, setFilteredBooks] = useState();
+    const[filteredBooks, setFilteredBooks] = useState([]);
 
     useEffect(() => {
 
@@ -23,12 +23,15 @@ const myBooks = () => {
         }, [isAuthenticated]);
 
         const userBookReviews = () => {
+            if (userReviews.length > 0 && books.length > 0)
+            {
+                const reviewBookId = userReviews.map((review) => review.bookId);
+                
+                const filterById = books.filter((book) => reviewBookId.includes(book.bookId));
 
-            const reviewBookId = userReviews.map((review) => review.bookId);
-     
-            const filterById = books.filter((book) => reviewBookId.includes(book.bookId));
-            
-            setFilteredBooks(filterById);
+                setFilteredBooks(filterById);
+
+            }
          };
         
         useEffect(() => {
@@ -49,19 +52,23 @@ const myBooks = () => {
         return (
             <div className="myBooks-wrapper">
               <div className="userBooks">
-                {filteredBooks.map((book) => {
-                  const review = userReviews.find((r) => r.bookId === book.bookId);
-                  return (
+              {filteredBooks && filteredBooks.length > 0 ? (
+                filteredBooks.map((book) => {
+                    const review = userReviews.find((r) => r.bookId === book.bookId);
+                    return (
                     <div className="book" key={book.bookId}>
-                      <h3>{book.title}</h3>
-                      <p>{review.rating}</p>
-                      <p>{review.reviewComment}</p>
-                      <p>{review.reviewDate}</p>
+                        <h3>{book.title}</h3>
+                        <p>{review.rating}</p>
+                        <p>{review.reviewComment}</p>
+                        <p>{review.reviewDate}</p>
                     </div>
-                  );
-                })}
-              </div>
+                    );
+                })
+            ) : (
+            <p>No reviews for books found.</p> // Display a message if the user has no reviews for books
+            )}
             </div>
-          );
+            </div>
+        );
 };
 export default myBooks;
