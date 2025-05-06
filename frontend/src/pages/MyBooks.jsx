@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import "../styles/MyBooks.css";
+
 
 const myBooks = () => {
 
@@ -51,16 +53,16 @@ const myBooks = () => {
         
         return (
             <div className="myBooks-wrapper">
-              <div className="userBooks">
+              <div className="userBooksRow">
               {filteredBooks && filteredBooks.length > 0 ? (
                 filteredBooks.map((book) => {
                     const review = userReviews.find((r) => r.bookId === book.bookId);
                     return (
                     <div className="book" key={book.bookId}>
-                        <h3>{book.title}</h3>
+                        <h4>{book.title}</h4>
                         <p>{review.rating}</p>
                         <p>{review.reviewComment}</p>
-                        <p>{review.reviewDate}</p>
+                        <p>{review.reviewDate.split("T")[0]}</p>
                     </div>
                     );
                 })

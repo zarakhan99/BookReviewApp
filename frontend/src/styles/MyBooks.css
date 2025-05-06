@@ -1,0 +1,30 @@
+.myBooks-wrapper {
+  width: 100%; /* Ensure full width */
+  overflow: visible; /* Override any overflow:hidden */
+}
+
+.userBooksRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%; /* Critical */ 
+}
+
+.book {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%; /* Force full width */
+  gap: 2rem; /* Space between items */
+  padding: 0.5rem;
+  border: 1px solid #ddd; /* Visual debug */
+  flex-wrap: nowrap; /* Prevent line breaks */
+  overflow-x: visible;
+  max-width: 150vw
+}
+
+.book p:nth-of-type(2) 
+{ 
+  flex: 3; 
+  font-size: 15px;
+}
