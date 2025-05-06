@@ -45,15 +45,23 @@ const myBooks = () => {
                 userBookReviews();
             }
         }, [userReviews, books]);
-
-        return 
-        (
-            <div className = "myBooks-wrapper">
-                
-
-
+        
+        return (
+            <div className="myBooks-wrapper">
+              <div className="userBooks">
+                {filteredBooks.map((book) => {
+                  const review = userReviews.find((r) => r.bookId === book.bookId);
+                  return (
+                    <div className="book" key={book.bookId}>
+                      <h3>{book.title}</h3>
+                      <p>{review.rating}</p>
+                      <p>{review.reviewComment}</p>
+                      <p>{review.reviewDate}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-           
-
-        );
+          );
 };
+export default myBooks;

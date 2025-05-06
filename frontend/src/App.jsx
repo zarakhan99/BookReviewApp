@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Browse from './pages/Browse';
 import BookDetails from './pages/BookDetails';
 import WriteReview from './pages/WriteReview';
+import MyBooks from './pages/MyBooks';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/" element={<Home />} />
         <Route path="/review/:bookId" element={<WriteReview />} />
-        {/* Add a fallback route for undefined paths */}
+        <Route path="/my-books" element={<MyBooks />} />
+        {/* Fallback route for undefined paths */}
         <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </div>
