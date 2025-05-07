@@ -8,6 +8,7 @@ import Browse from './pages/Browse';
 import BookDetails from './pages/BookDetails';
 import WriteReview from './pages/WriteReview';
 import MyBooks from './pages/MyBooks';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/review/:bookId" element={<WriteReview />} />
         <Route path="/my-books" element={<MyBooks />} />
+        <Route path="/admin/Dashboard" element={<Dashboard />} />
         
         {/* Fallback route for undefined paths */}
         <Route path="*" element={<Navigate to="/home" />} />
