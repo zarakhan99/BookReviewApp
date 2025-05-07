@@ -22,8 +22,6 @@ const Dashboard  = () => {
     
         }, [isAuthenticated]);
         
-        
-        
         return (
             <div className="dashboard-container">
               <aside className="admin-sidebar">

@@ -9,16 +9,16 @@ const CreateBook = () => {
     const[title, setTitle] = useState("");
     const[author, setAuthor] = useState("");
     const[publishYear, setPublishYear] = useState("");
-    const[bookDes, setBookDes] = useState("");
+    const[bookDescription, setBookDescription] = useState("");
     const[imageUrl, setImageUrl] = useState("");
     const[selectedGenres, setSelectedGenres] = useState([]); // array fir multiple genre selection
     
     const handleCreateBookClick = async () =>
     {
-        if (title && author && publishYear && bookDes && imageUrl && selectedGenres.length > 0)
+        if (title && author && publishYear && bookDescription && imageUrl && selectedGenres.length > 0)
                 
         {
-            const newBook = await createBook(title, author, publishYear, bookDes,imageUrl)
+            const newBook = await createBook(title, author, publishYear, bookDescription,imageUrl)
             
             if(newBook)
             {
@@ -44,8 +44,40 @@ const CreateBook = () => {
     
     return (
         <div className = "form-wrapper">
-            <form className = "create-book-form">
-
+            <form className = "create-book-form" onSubmit={(e) => {  // create a form
+            e.preventDefault(); // stop defualt submission and page reload
+            handleCreateBookClick(); 
+            }}>
+            <label htmlFor="title"> Title</label>
+            <input type="text" id="title" name="book-title" value={title} onChange={(event) => setTitle(event.target.value)} >
+            </input>
+            <label htmlFor="imageUrl"> Image Url</label>
+            <input type="text" id="image Url" name="book-image" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)} >
+            </input>
+            <label htmlFor="author"> Author</label>
+            <input type="text" id="author" name="book-author" value={author} onChange={(event) => setAuthor(event.target.value)} >
+            </input>
+            <label htmlFor="publishYear"> Publish Year</label>
+            <input type="text" id="publishYear" name="book-publish-year" value={publishYear} onChange={(event) => setPublishYear(event.target.value)} >
+            </input>
+            <label htmlFor="selectedGenres">Select Genres</label>
+            <select // create a dropdown
+                genreId="selectedGenres" //i=unique identifier for genres
+                name="genres" //genre names
+                multiple //allow user to select multiple genres
+                value={selectedGenres} // bind chosen genred to selected genres
+                onChange={(e) => setSelectedGenres([...e.target.selectedOptions].map(option => option.value))} // selected options
+            >
+                {genres.map(genre => ( // loops over selected options and gets the genre ids
+                    <option key={genre.genreId} value={genre.genreId}>
+                        {genre.genreName}
+                    </option>
+                ))}
+            </select>
+            <textarea id="bookDescription" name="book-description" value = {bookDescription} placeholder="Enter book synopsis..."
+                onChange={(event) => setBookDescription(event.target.value)} maxLength={300}>
+            </textarea> 
+            <button className ="submit-button"> Submit </button>
             </form>
         </div>
     );
