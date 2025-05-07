@@ -65,7 +65,6 @@ const Browse = () => {
                 imageUrl={book.imageUrl}
                 title={book.title}
                 author={book.author}
-                publishYear={book.publishYear}
                 bookDescription={book.bookDescription}
               />
             ))}
