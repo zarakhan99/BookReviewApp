@@ -87,9 +87,9 @@ const BookDetails = () => {
 
    return (
     <div className="book-details-container">
-      {/* <img src={bookDetails.coverImageUrl} alt={bookDetails.title} className="book-cover" /> */}
         <h2 className="book-title">{bookDetails.title}</h2>
         <h3 className="book-author">{bookDetails.author}</h3>
+        <img src={bookDetails.imageUrl} alt={bookDetails.title} className="book-cover" />
         <div className="book-average-rating">
         {calcAverageRating()}
         </div>
