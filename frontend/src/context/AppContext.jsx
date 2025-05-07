@@ -73,6 +73,71 @@ export const AppProvider = ({ children }) => {
         }
       };
 
+      //Posting a book
+
+      const createBook = async (bookData) => {
+        try {
+          setLoading(true);
+
+          const bookData = {
+            title: Title,
+            author: Author,
+            publishYear: publishYear,
+            description: bookDescription,
+            imageUrl: bookImageUrl, // This is where the image URL will go
+            genres: selectedGenres,  // The genres associated with the book
+          };
+
+          const book = await api.get(`/books`, bookData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          setBooks([...books, book.data]);
+          setLoading(false);
+          return book.data; 
+      } catch(err)
+      {
+        console.error("Failed to add book:", err);
+        setLoading(false);
+        setError("Failed to add book.");
+        return null;
+      }
+      };
+
+      //Posting a book
+
+      const createBookGenre = async (newBookGenre) => {
+        try {
+          setLoading(true);
+
+          const newBookGenre = {
+            bookId: bookId,
+            genreId: genreId
+          };
+
+          const bookGenre = await api.get(`/books`, newbookGenre, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          setBooks([...books, book.data]);
+          setLoading(false);
+          return book.data; 
+      } catch(err)
+      {
+        console.error("Failed to add book:", err);
+        setLoading(false);
+        setError("Failed to add book.");
+        return null;
+      }
+      };
+
+
+
+
     //get genres for a specific book
 
       const fetchGenresForBook = async (bookId) => {
@@ -314,7 +379,8 @@ export const AppProvider = ({ children }) => {
       fetchGenresForBook,
       submitReview,
       fetchReviewsByUser,
-      deleteReview
+      deleteReview,
+      createBook
     };
     
         return (
