@@ -76,7 +76,7 @@ export const AppProvider = ({ children }) => {
 
       //Posting a book
 
-      const createBook = async (title, author, publishYear,bookDescription,bookImageUrl, selectedGenres) => {
+      const createBook = async (title, author, publishYear,bookDescription, bookImageUrl) => {
         try {
           setLoading(true);
 
@@ -85,8 +85,7 @@ export const AppProvider = ({ children }) => {
             author: author,
             publishYear: publishYear,
             description: bookDescription,
-            imageUrl: bookImageUrl, // This is where the image URL will go
-            genres: selectedGenres,  // The genres associated with the book
+            imageUrl: bookImageUrl, 
           };
 
           const book = await api.post(`/books`, bookData, {
