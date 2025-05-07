@@ -15,6 +15,7 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(null);
 
     const [books, setBooks] = useState([]);
+
     const [bookDetails, setBookDetails] = useState([]);
     const [genresForBook, setGenresForBook]= useState([]);
     const [genres, setGenres] = useState([]);
@@ -75,20 +76,20 @@ export const AppProvider = ({ children }) => {
 
       //Posting a book
 
-      const createBook = async (bookData) => {
+      const createBook = async (title, author, publishYear,bookDescription,bookImageUrl, selectedGenres) => {
         try {
           setLoading(true);
 
           const bookData = {
-            title: Title,
-            author: Author,
+            title: title,
+            author: author,
             publishYear: publishYear,
             description: bookDescription,
             imageUrl: bookImageUrl, // This is where the image URL will go
             genres: selectedGenres,  // The genres associated with the book
           };
 
-          const book = await api.get(`/books`, bookData, {
+          const book = await api.post(`/books`, bookData, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -108,7 +109,7 @@ export const AppProvider = ({ children }) => {
 
       //Posting a book
 
-      const createBookGenre = async (newBookGenre) => {
+      const assignBookToGenre = async (bookId, genreId) => {
         try {
           setLoading(true);
 
@@ -117,20 +118,20 @@ export const AppProvider = ({ children }) => {
             genreId: genreId
           };
 
-          const bookGenre = await api.get(`/books`, newbookGenre, {
+          const bookGenre = await api.post(`/bookGenres`, newBookGenre, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
 
-          setBooks([...books, book.data]);
+          setGenresForBook([...genresForBook, bookGenre.data]);
           setLoading(false);
-          return book.data; 
+          return bookGenre.data; 
       } catch(err)
       {
-        console.error("Failed to add book:", err);
+        console.error("Failed to add bookgenre:", err);
         setLoading(false);
-        setError("Failed to add book.");
+        setError("Failed to add bookgenre.");
         return null;
       }
       };
@@ -380,7 +381,8 @@ export const AppProvider = ({ children }) => {
       submitReview,
       fetchReviewsByUser,
       deleteReview,
-      createBook
+      createBook,
+      assignBookToGenre
     };
     
         return (
