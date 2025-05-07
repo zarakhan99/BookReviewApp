@@ -62,6 +62,7 @@ const Browse = () => {
               <BookCard
                 key={book.bookId}
                 bookId={book.bookId}
+                imageUrl={book.imageUrl}
                 title={book.title}
                 author={book.author}
                 publishYear={book.publishYear}

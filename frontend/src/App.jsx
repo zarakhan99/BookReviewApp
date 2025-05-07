@@ -22,7 +22,7 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/review/:bookId" element={<WriteReview />} />
         <Route path="/my-books" element={<MyBooks />} />
-        <Route path="/admin/Dashboard" element={<Dashboard />} />
+        {/*<Route path="/admin/Dashboard" element={<Dashboard />} /> */}
         
         {/* Fallback route for undefined paths */}
         <Route path="*" element={<Navigate to="/home" />} />
