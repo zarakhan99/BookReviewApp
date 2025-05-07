@@ -32,6 +32,9 @@ namespace BookReviewApi.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PublishYear")
                         .HasColumnType("INTEGER");
 

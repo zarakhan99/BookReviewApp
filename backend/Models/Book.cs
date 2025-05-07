@@ -20,6 +20,8 @@ namespace BookReviewApi.Models
         [Required] // a book description is required and has a limit of 300 characters
         [StringLength(300, MinimumLength = 100, ErrorMessage = "Book Description must be be between 100 to 300 characters.")]
         public string BookDescription {get; set; }
+
+        public string? ImageUrl { get; set; }
        
        // Navigational Properties
         [JsonIgnore]
