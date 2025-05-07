@@ -10,22 +10,46 @@
 
 .book-details-wrapper {
     max-width: 800px;
-    margin: 2rem auto;
-    padding-top: 2rem;
+    margin: auto;
     font-family: sans-serif;
+    background-color: #fafafa;
+    padding-top: 20px; 
+    margin-top: 150px;
     
+  }
+  .book-info
+  {
+    display: flex;
+    flex-direction: column;          /* Stack book info vertically */
+    align-items: flex-start;         /* Align all text to the left */
+    gap: 0.5rem;                     /* Space between the individual pieces of information */
+    flex-grow: 1; 
+
+  }
+  .book-cover
+  {
+   width: 225px;
+   height: auto;
+   padding-top: 15px;
+   margin-top: 95px;
+   margin-left: 60px;
+   padding-right: 15px;
+
   }
 
   .book-header {
     display: flex;
+    flex-direction: row; 
     align-items: flex-start;
     gap: 1.5rem;
-    margin-bottom: 2rem;
+ 
   }
 
   .book-title {
     margin: 0;
     font-size: 1.75rem;
+    padding-top: 15px;
+    margin-top: 95px;
 
   }
 
@@ -40,7 +64,6 @@
   .book-average-rating {
     color: orange;
     margin-right: 510px;
-    padding-top: 1px;
   }
 
   .book-genres {
@@ -49,9 +72,9 @@
 
 
   .book-description {
-    margin-top: 1.5rem;
     font-size: 1rem;
     line-height: 1.6;
+    align-items: flex-start; 
   }
 
   .book-reviews {
