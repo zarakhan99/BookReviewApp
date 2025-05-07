@@ -8,7 +8,7 @@ import "../styles/MyBooks.css";
 
 const myBooks = () => {
 
-    const { books, userId, userReviews, fetchReviewsByUser, isAuthenticated = false } = useAppContext();
+    const { books, userId, userReviews, fetchReviewsByUser, isAuthenticated = false, deleteReview } = useAppContext();
 
     const[filteredBooks, setFilteredBooks] = useState([]);
 
@@ -51,6 +51,22 @@ const myBooks = () => {
         useEffect(() => {
             userBookReviews();
           }, [userReviews, books]);
+          
+          const handleDeleteClick = (reviewId) => {
+            
+            const confirmed = window.confirm("Are you sure you want to delete this review?"); // alert will ask the user to confirm the deletion
+
+            if(confirmed) // if user clicks ok
+            {
+                deleteReview(reviewId, userId); // method to delet is called and deleted the review
+
+                setFilteredBooks((previousBooks) => // update the fultered books state so the review it removed form the ui
+                    previousBooks.filter((book) => book.reviewId !== reviewId)
+                );
+    
+                console.log("Review Successfully Deleted")
+            }
+          }
         
         return (
             <div className="myBooks-wrapper">
@@ -65,6 +81,9 @@ const myBooks = () => {
                         <p>{review.rating}</p>
                         <p>{review.reviewComment}</p>
                         <p>{review.reviewDate.split("T")[0]}</p>
+                        <button className = "delete-review" onClick = {() => handleDeleteClick(review.reviewId)}>
+                            Delete
+                        </button>
                     </div>
                     );
                 })

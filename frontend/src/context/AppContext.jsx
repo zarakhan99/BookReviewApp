@@ -171,6 +171,34 @@ export const AppProvider = ({ children }) => {
         }
       };
 
+      //delete reviewById
+      const deleteReview = async (reviewId, memberId) => {
+        try
+          {
+            setLoading(true);
+
+            if(userRole == 'Admin' || userId == memberId  )
+            {
+              const review = await api.delete(`Reviews/${reviewId(review.id, review.memberId)}`);
+
+              fetchReviewsByUser(memberId)
+        
+            }
+
+            setLoading(false);
+          }
+          catch (err) {
+            if (err.response?.status === 403) {
+              setError("User not authorized: Not a admin or owner of review!");
+            } else {
+              console.error("Deletion failed:", err);
+            }
+            setLoading(false);
+          }
+      };
+
+
+
     //fetching genres
     useEffect(() => {
       const fetchGenre = async () => {
@@ -285,7 +313,8 @@ export const AppProvider = ({ children }) => {
       fetchBookReviews,
       fetchGenresForBook,
       submitReview,
-      fetchReviewsByUser
+      fetchReviewsByUser,
+      deleteReview
     };
     
         return (
