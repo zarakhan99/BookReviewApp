@@ -87,9 +87,11 @@ const BookDetails = () => {
 
    return (
     <div className="book-details-container">
+      <div className= "book-header">
+      <img src={bookDetails.imageUrl} alt={bookDetails.title} className="book-cover" />
+        <div className= "book-info"> 
         <h2 className="book-title">{bookDetails.title}</h2>
         <h3 className="book-author">{bookDetails.author}</h3>
-        <img src={bookDetails.imageUrl} alt={bookDetails.title} className="book-cover" />
         <div className="book-average-rating">
         {calcAverageRating()}
         </div>
@@ -99,6 +101,8 @@ const BookDetails = () => {
         </div>
         <div className= "book-description"> 
         <p>{bookDetails.bookDescription}</p>
+        </div>
+        </div>
         </div>
         <div className="book-reviews">
             <h3>Reviews & Ratings</h3>
