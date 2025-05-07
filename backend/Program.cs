@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity; // Identity frame work for user management 
 using BookReviewApi.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
@@ -13,6 +14,11 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();  // This will log to the console
+    logging.AddDebug();    // This will log to the debug output
+});
 
 builder.Services.AddOpenApi(); // Open API for swagger documentation
 
@@ -49,7 +55,10 @@ builder.Services.AddAuthentication(options =>
             ValidateIssuerSigningKey = true, // Making sure token has a valid signing key
             ValidIssuer = builder.Configuration["Jwt:Issuer"], // Validate issuer 
             ValidAudience = builder.Configuration["Jwt:Issuer"], 
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])) //using secret key from appsettings.json to validate token
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])), //using secret key from appsettings.json to validate token
+
+            NameClaimType = ClaimTypes.NameIdentifier,
+            RoleClaimType = ClaimTypes.Role
         };
     });
 

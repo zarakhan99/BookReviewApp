@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims; 
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity;
 using BookReviewApi.Models;
 
 // Controller handles review endpoints for creating, reading, updating, and deleting reviews - uses ReviewService to perform CRUD operations
@@ -18,12 +21,14 @@ namespace BookReviewApi.Controllers
     {
         private readonly IReviewService _reviewService; // Review service interface 
         private readonly ILogger<ReviewsController> _logger; // Logger service 
+        //private readonly UserManager<IdentityUser> _userManager;
 
         // Injecting the dependicies in the contructor - calls methods from services
-        public ReviewsController(IReviewService reviewService, ILogger<ReviewsController> logger)
+        public ReviewsController(IReviewService reviewService, ILogger<ReviewsController> logger) //UserManager<IdentityUser> userManager
         {
             _reviewService = reviewService; //inject instance of review interface - methods from the service are automatically provided 
-            _logger = logger; // Injecting ILogger manages  to log warnng and errors 
+            _logger = logger;
+            //_userManager = userManager; // Injecting ILogger manages  to log warnng and errors 
         }
 
         // GET: api/Reviews
@@ -187,7 +192,7 @@ namespace BookReviewApi.Controllers
             }
         }
         
-        [Authorize(Roles = "Admin")] // Only admins can delete a review 
+        [Authorize]
          // DELETE: api/Reviews/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReview(int id)
@@ -200,6 +205,17 @@ namespace BookReviewApi.Controllers
                     _logger.LogWarning($"Review with ID {id} not found."); // Warning is logged and not found reponse is returned
                     return NotFound($"Review with ID {id} not found."); 
                 }
+
+                var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                var isAdmin = User.IsInRole("Admin");
+                
+                    // Check if the current user is the one who created the review or if the user has an Admin role
+                    if (currentUserId != review.MemberId && !isAdmin)
+                    {
+                        _logger.LogWarning($"User with ID {currentUserId} is not authorized to delete this review.");
+                        return Forbid(); // Return 403 Forbidden if the IDs don't match
+                    }
 
                 await _reviewService.DeleteReviewAsync(id); // If found, calls the review service and the review with the id is deleted from database 
                 _logger.LogInformation($"Review with ID {id} deleted.");
