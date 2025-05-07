@@ -7,7 +7,6 @@ const Browse = () => {
 
     const { books, genres, fetchBooksByGenre, error, loading} = useAppContext();
   
-    
 
     const [selectedGenreId, setSelectedGenreId] = useState(null);
   
