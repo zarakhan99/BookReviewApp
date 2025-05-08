@@ -45,11 +45,12 @@ const BookDetails = () => {
         }
       }
   
-      return stars;
+      return { stars, averageRating };
     }
      else
      {
-        return Array(5).fill().map((_, i) => <FaRegStar key={i} />);
+      const emptyStars = Array(5).fill().map((_, i) => <FaRegStar key={i} />);
+      return { stars: emptyStars, averageRating: "0.0" }; // Default when no reviews
      }
 
     }
@@ -93,7 +94,10 @@ const BookDetails = () => {
         <h2 className="book-title">{bookDetails.title}</h2>
         <h3 className="book-author">{bookDetails.author}</h3>
         <div className="book-average-rating">
-        {calcAverageRating()}
+        {calcAverageRating().stars}
+        <span className="rating-number">
+          {calcAverageRating().averageRating}/5
+          </span>
         </div>
         <div className="book-genres">
           Genres:&nbsp;
@@ -110,6 +114,7 @@ const BookDetails = () => {
             <button className ="review-button" onClick={handleWriteReviewClick}>
               Write a Review
               </button>
+              <hr className="review-divider" />
             
             {bookReviews.length > 0 ? (
                 bookReviews.map(review => (
@@ -119,13 +124,19 @@ const BookDetails = () => {
                                 User: {review.memberId}
                                 </span>
                             <span className="review-date">
-                                {new Date(review.reviewDate).toLocaleDateString()}
+                            {new Date(review.reviewDate).toLocaleDateString("en-GB", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric"
+                              })}
                                 </span>
                                 </div>
                                 <div className="review-stars">
                                     {getUserStarRating(review)}
                                 </div>
+                                <div> 
                                 <p className="review-text">{review.reviewComment}</p>
+                                </div>
                                 </div>
   ))
 ) : (
