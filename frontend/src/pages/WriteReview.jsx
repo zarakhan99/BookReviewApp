@@ -84,23 +84,21 @@ const WriteReview= () => {
                 <h3>Write a Review!</h3>
             </div>
             <form className = "review-form" onSubmit={handleReviewsubmission}>
-            <label htmlFor="memberId">Member Id</label>
-            <input type="text" id="memberId" name="member-id" value={userId} readOnly></input>
-            <label htmlFor="comment">What did you think? </label>
-            <div className='star-rating'> 
-            {userStarRating()}
-            </div>
-            <textarea id="userComment" name="subject" value = {reviewComment} placeholder="Enter review..."
+                <label htmlFor="memberId">Member Id</label>
+                <input type="text" id="memberId" name="member-id" value={userId} readOnly></input>
+                <label htmlFor="comment">What did you think? </label>
+                <div className='star-rating'> 
+                    {userStarRating()}
+                </div>
+                <textarea id="userComment" name="subject" value = {reviewComment} placeholder="Enter review..."
                 onChange={(event) => setReviewComment(event.target.value)} maxLength={300}>
-            </textarea> 
-            <p className = "character-count">{reviewComment.length} / 300 characters</p>
-            <button type="submit" className="button">
-                Post
-            </button>
-            
+                    </textarea> 
+                    <p className = "character-count">{reviewComment.length} / 300 characters</p>
+                    <button type="submit" className="button">
+                        Post
+                        </button>
             </form>
         </div>
-        
    );
 };
 
