@@ -22,13 +22,14 @@
   }
   
   .logo {
-    height: 40px;
-    padding: 15px 35px; 
+    height: 100%;;
+    padding: 0 35px;
     font: Georgia, serif;
     font-size: 21px;
     font-weight: 400;
     color: #382110;
     text-decoration: none;
+    line-height: 35px; 
   }
 
   .bold-look {
