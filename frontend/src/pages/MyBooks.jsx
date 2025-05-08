@@ -67,9 +67,30 @@ const myBooks = () => {
                 console.log("Review Successfully Deleted")
             }
           }
+
+          const getUserStarRating = (review) => {
+            const reviewStars = []
+            for (let i = 1; i <= 5; i++) {
+                if (review.rating >= i) {
+                    reviewStars.push(<FaStar key={i} className="star-icon"/>);
+                } else if (review.rating >= i - 0.5) {
+                    reviewStars.push(<FaStarHalfAlt key={i} className="star-icon"/>);
+                } else {
+                    reviewStars.push(<FaRegStar key={i} className="star-icon"/>);
+                }
+            }
+            return reviewStars;
+        };
         
         return (
             <div className="myBooks-wrapper">
+                <div className="books-header">
+                <h4>Title</h4>
+                <h4>Rating</h4>
+                <h4>Review</h4>
+                <h4>Date</h4>
+                <h4>Action</h4>
+                </div>
               <div className="userBooksRow">
               {filteredBooks.length > 0 ? (
                 filteredBooks.map((book) => {
@@ -78,8 +99,8 @@ const myBooks = () => {
                     return (
                     <div className="book" key={book.bookId}>
                         <h4>{book.title}</h4>
-                        <p>{review.rating}</p>
-                        <p>{review.reviewComment}</p>
+                        <p>{getUserStarRating(review)}</p>
+                        <p className="review-comment">{review.reviewComment}</p>
                         <p>{review.reviewDate.split("T")[0]}</p>
                         <button className = "delete-review" onClick = {() => handleDeleteClick(review.reviewId)}>
                             Delete

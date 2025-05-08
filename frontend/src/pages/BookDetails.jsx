@@ -83,7 +83,6 @@ const BookDetails = () => {
       }
     }
     
-    
     console.log("bookDetails:", bookDetails);
 
    return (
