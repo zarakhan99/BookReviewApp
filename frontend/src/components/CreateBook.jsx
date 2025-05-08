@@ -3,7 +3,7 @@ import { useAppContext } from '../context/AppContext';
 
 const CreateBook = () => {
     
-    const { createBook, assignBookToGenre, genres, books, loading, error } = useAppContext();
+    const { createBook, assignBookToGenre, genres, books } = useAppContext();
     
     // state var for book creation
     const[title, setTitle] = useState("");
@@ -11,7 +11,9 @@ const CreateBook = () => {
     const[publishYear, setPublishYear] = useState("");
     const[bookDescription, setBookDescription] = useState("");
     const[imageUrl, setImageUrl] = useState("");
-    const[selectedGenres, setSelectedGenres] = useState([]); // array fir multiple genre selection
+    const[selectedGenres, setSelectedGenres] = useState([]); // array for multiple genre selection
+    const [errorMessage, setErrorMessage] = useState('');
+    const [createdBook, setCreatedBook] = useState(null);
     
     const handleCreateBookClick = async () =>
     {
@@ -22,23 +24,29 @@ const CreateBook = () => {
             
             if(newBook)
             {
-                console.log = ("Book Created Successfully!");
-                console.log = ($(newBook));
+                console.log("Book Created Successfully!");
+                console.log($(newBook));
                 
                 for (const genreId of selectedGenres) 
                 {
                     await assignBookToGenre(newBook.bookId, genreId);
                 }
                 console.log("Book genres successfully assigned!");
+
+                //const matchingGenres = selectedGenres.genreId.map(id) => genres.genreId);
+
+                const newCreatedBook = {newBook,selectedGenres}
+
+                setCreatedBook(newCreatedBook)
             }
             else
             {
-                console.log("Book Creation failed!");
+                setErrorMessage("Book Creation failed!");
             }
     }
     else 
     {
-        console.log("Missing Fields: All fields must be filled to create a book");
+        setErrorMessage("Missing Fields: All fields must be filled to create a book");
     }
     };
     
@@ -75,8 +83,10 @@ const CreateBook = () => {
                 ))}
             </select>
             <textarea id="bookDescription" name="book-description" value = {bookDescription} placeholder="Enter book synopsis..."
-                onChange={(event) => setBookDescription(event.target.value)} maxLength={300}>
-            </textarea> 
+                onChange={(event) => setBookDescription(event.target.value)} maxLength={300}
+            /> 
+            {errorMessage && <div className="error-message">{errorMessage}
+                </div>}
             <button className ="submit-button"> Submit </button>
             </form>
         </div>
