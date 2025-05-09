@@ -109,7 +109,7 @@ const myBooks = () => {
                     );
                 })
             ) : (
-            <p>No reviews for books found.</p> // Display a message if the user has no reviews for books
+            <p className="no-review">No reviews for books found.</p> // Display a message if the user has no reviews for books
             )}
             </div>
             </div>
