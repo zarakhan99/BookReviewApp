@@ -25,7 +25,7 @@ const CreateBook = () => {
             if(newBook)
             {
                 console.log("Book Created Successfully!");
-                console.log($(newBook));
+                console.log(newBook);
                 
                 for (const genreId of selectedGenres) 
                 {
@@ -38,6 +38,13 @@ const CreateBook = () => {
                 const newCreatedBook = {newBook,selectedGenres}
 
                 setCreatedBook(newCreatedBook)
+
+                setTitle("")
+                setAuthor("")
+                setPublishYear("")
+                setBookDescription("")
+                setImageUrl("");
+                setSelectedGenres([])
             }
             else
             {
@@ -70,7 +77,6 @@ const CreateBook = () => {
             </input>
             <label htmlFor="selectedGenres">Select Genres</label>
             <select // create a dropdown
-                genreId="selectedGenres" //i=unique identifier for genres
                 name="genres" //genre names
                 multiple //allow user to select multiple genres
                 value={selectedGenres} // bind chosen genred to selected genres
@@ -91,5 +97,4 @@ const CreateBook = () => {
             </form>
         </div>
     );
-
 }

@@ -116,8 +116,8 @@ import React, { useState } from "react";
                                                           <>
                                                           <li>
                                                             <Link
-                                                              to="/manage-books"
-                                                              className={location.pathname === "/manage-Books" ? "active" : ""}
+                                                              to="/admin/dashboard"
+                                                              className={location.pathname === "/admin/dashboard" ? "active" : ""}
                                                               onClick={closeMenu}
                                                             >
                                                               Dashboard
