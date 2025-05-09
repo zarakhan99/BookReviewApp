@@ -1,0 +1,65 @@
+.dashboard-container{
+    display: flex;
+}
+
+.admin-sidebar{
+    position: fixed;
+    flex-direction: column;
+    top: 68px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 80px); 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding: 6px 8px 6px 16px;
+    font-size: 20px;
+    background-color: #ffffff;
+    overflow-y: auto
+}
+
+.books-header, .genre-header {
+  text-align: left; /* Ensure text is aligned to the left */
+  margin-top: 17px;
+  padding-left: 13px;
+  margin-bottom: 14px;
+  border-bottom: none;
+  color: #382110;
+}
+
+.book-button button
+{ 
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #2f7571;
+    width: 100%;            /* Ensure buttons take full width of sidebar */
+    display: block; 
+    border: none;
+    text-align: left;
+   
+
+}
+
+.genre-button button
+{ 
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #2f7571;
+    width: 100%;            /* Ensure buttons take full width of sidebar */
+    display: block; 
+    border: none;
+    text-align: left;
+
+}
+.genre-button button:hover 
+{
+    text-decoration: underline;
+}
+
+.book-button button:hover 
+{
+    text-decoration: underline;
+}
+
+
+.main-content {
+  flex: 1;
+}
