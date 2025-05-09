@@ -236,33 +236,28 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      //delete reviewById
+     //delete reviewById
       const deleteReview = async (reviewId, memberId) => {
-        try
-          {
-            setLoading(true);
-
-            if(userRole == 'Admin' || userId == memberId  )
-            {
-              const review = await api.delete(`Reviews/${reviewId(review.id, review.memberId)}`);
-
-              fetchReviewsByUser(memberId)
-        
-            }
-
-            setLoading(false);
+        try {
+          setLoading(true);
+          console.log(userRole, userId);
+      
+          if (userRole === 'Admin' || userId === memberId) {
+            await api.delete(`Reviews/${reviewId}`);
+            fetchReviewsByUser(memberId);
+          } else {
+            setError("Unauthorized: You can only delete your own review or be an Admin.");
           }
-          catch (err) {
-            if (err.response?.status === 403) {
-              setError("User not authorized: Not a admin or owner of review!");
-            } else {
-              console.error("Deletion failed:", err);
-            }
-            setLoading(false);
+        } catch (err) {
+          if (err.response?.status === 403) {
+            setError("User not authorized: Not an Admin or owner of review!");
+          } else {
+            console.error("Deletion failed:", err);
           }
+        } finally {
+          setLoading(false);
+        }
       };
-
-
 
     //fetching genres
     useEffect(() => {

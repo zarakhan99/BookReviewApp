@@ -58,7 +58,7 @@ const myBooks = () => {
 
             if(confirmed) // if user clicks ok
             {
-                deleteReview(reviewId, userId); // method to delet is called and deleted the review
+                deleteReview(reviewId, userId); // method to delete is called and deleted the review
 
                 setFilteredBooks((previousBooks) => // update the fultered books state so the review it removed form the ui
                     previousBooks.filter((book) => book.reviewId !== reviewId)

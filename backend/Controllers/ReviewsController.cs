@@ -199,32 +199,23 @@ namespace BookReviewApi.Controllers
         {
             try
             {
-                var review = await _reviewService.GetReviewByIdAsync(id); // Calls the review service to fetch review by id
-                if (review == null) // If review  with id is null
+                // Get the review by ID
+                var review = await _reviewService.GetReviewByIdAsync(id);
+                if (review == null)
                 {
-                    _logger.LogWarning($"Review with ID {id} not found."); // Warning is logged and not found reponse is returned
-                    return NotFound($"Review with ID {id} not found."); 
+                    _logger.LogWarning($"Review with ID {id} not found.");
+                    return NotFound($"Review with ID {id} not found.");
                 }
-
-                var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-                var isAdmin = User.IsInRole("Admin");
-                
-                    // Check if the current user is the one who created the review or if the user has an Admin role
-                    if (currentUserId != review.MemberId && !isAdmin)
-                    {
-                        _logger.LogWarning($"User with ID {currentUserId} is not authorized to delete this review.");
-                        return Forbid(); // Return 403 Forbidden if the IDs don't match
-                    }
-
-                await _reviewService.DeleteReviewAsync(id); // If found, calls the review service and the review with the id is deleted from database 
+ 
+                // Proceed with deletion
+                await _reviewService.DeleteReviewAsync(id);
                 _logger.LogInformation($"Review with ID {id} deleted.");
-                return NoContent(); // Returns no content as deletion was successful
+                return NoContent(); // HTTP 204
             }
-            catch (Exception ex) // Log any exceptions that occur during the process and returns 500 internal error status code 
+            catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while deleting the review.");
-                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error.");
             }
         }
     }
