@@ -64,18 +64,30 @@ const CreateBook = () => {
             e.preventDefault(); // stop defualt submission and page reload
             handleCreateBookClick(); 
             }}>
+            <div className="form-title">
+                <h3>Create A New Book</h3>
+            </div>
+            <div className="field-group">
             <label htmlFor="title"> Title</label>
             <input type="text" id="title" name="book-title" value={title} onChange={(event) => setTitle(event.target.value)} >
             </input>
+            </div>
+            <div className="field-group">
             <label htmlFor="imageUrl"> Image Url</label>
-            <input type="text" id="image Url" name="book-image" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)} >
+            <input type="text" id="imageUrl" name="book-image" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)} >
             </input>
+            </div>
+            <div className="field-group">
             <label htmlFor="author"> Author</label>
             <input type="text" id="author" name="book-author" value={author} onChange={(event) => setAuthor(event.target.value)} >
             </input>
+            </div>
+            <div className="field-group">
             <label htmlFor="publishYear"> Publish Year</label>
             <input type="text" id="publishYear" name="book-publish-year" value={publishYear} onChange={(event) => setPublishYear(event.target.value)} >
             </input>
+            </div>
+            <div className="field-group">
             <label htmlFor="selectedGenres">Select Genres</label>
             <select // create a dropdown
                 name="genres" //genre names
@@ -89,9 +101,13 @@ const CreateBook = () => {
                     </option>
                 ))}
             </select>
+            </div>
+            <div className="field-group">
+                <label htmlFor="book-description">Book Description</label>
             <textarea id="bookDescription" name="book-description" value = {bookDescription} placeholder="Enter book synopsis..."
                 onChange={(event) => setBookDescription(event.target.value)} maxLength={300}
             /> 
+            </div>
             {errorMessage && <div className="error-message">{errorMessage}
                 </div>}
             <button className ="submit-button"> Submit </button>

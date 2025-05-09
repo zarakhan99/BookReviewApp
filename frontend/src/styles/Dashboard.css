@@ -62,4 +62,7 @@
 
 .main-content {
   flex: 1;
+  margin-left: 220px;   
+  padding-top: 80px;    
+  padding: 80px 2rem 2rem 2rem;
 }

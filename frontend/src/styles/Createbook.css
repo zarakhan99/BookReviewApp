@@ -1,0 +1,75 @@
+* styles.css */
+* {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+
+  }
+
+.form-wrapper 
+{
+    
+     width: 750px;     /* Limit form width for readability */
+     margin: 0 auto;       /* Center form horizontally */
+     padding: 2rem;   
+    background-color: #F4F1EA;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    
+}
+
+.create-book-form 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.form-title {
+
+}
+
+.field-group {
+
+}
+
+label {
+
+}
+
+input {
+
+}
+
+select {
+
+}
+
+textarea {
+
+}
+
+.submit-button {
+
+}
+
+.error-message {
+
+}
+
+@media (max-width: 768px) {
+    .form-wrapper {
+
+    }
+
+    .create-book-form {
+
+    }
+
+    .submit-button {
+
+    }
+}
