@@ -94,7 +94,7 @@ export const AppProvider = ({ children }) => {
             },
           });
 
-          setBooks([...books, book.data]);
+          setBooks(prevBooks => [...prevBooks, book.data]);
           setLoading(false);
           return book.data; 
       } catch(err)
@@ -136,6 +136,27 @@ export const AppProvider = ({ children }) => {
       };
 
       //delete a book
+      const deleteBook = async (bookId) => {
+        try {
+          setLoading(true);
+          console.log(userRole, userId);
+      
+          if (userRole === 'Admin') {
+            await api.delete(`Books/${bookId}`);
+            fetchBookData();
+          } else {
+            setError("Unauthorized: You can only delete your own review or be an Admin.");
+          }
+        } catch (err) {
+          if (err.response?.status === 403) {
+            setError("User not authorized: Not an Admin or owner of review!");
+          } else {
+            console.error("Deletion failed:", err);
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
 
     //get genres for a specific book
 
@@ -381,7 +402,8 @@ export const AppProvider = ({ children }) => {
       fetchReviewsByUser,
       deleteReview,
       createBook,
-      assignBookToGenre
+      assignBookToGenre,
+      deleteBook
     };
     
         return (
