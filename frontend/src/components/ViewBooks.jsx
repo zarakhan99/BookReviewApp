@@ -32,6 +32,7 @@ const ViewBooks = () => {
                 <h4>Book Description</h4>
                 <h4>Action</h4>
             </div>
+            <hr></hr>
 
                 {/* Books List */}
       <div className="books-list">

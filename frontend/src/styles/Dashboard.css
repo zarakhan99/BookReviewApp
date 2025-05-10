@@ -16,7 +16,7 @@
     overflow-y: auto
 }
 
-.books-header, .genre-header {
+.books-header, .genre-header, .review-header {
   text-align: left; /* Ensure text is aligned to the left */
   margin-top: 17px;
   padding-left: 13px;
@@ -58,6 +58,23 @@
 {
     text-decoration: underline;
 }
+
+.view-review button
+{ 
+    font-size: 15px;
+    background-color: white;
+    color: #2f7571;
+    width: 100%;            /* Ensure buttons take full width of sidebar */
+    display: block; 
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+
+
+
+
 
 
 .main-content {

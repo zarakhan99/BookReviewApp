@@ -3,6 +3,7 @@ import { useAppContext } from "../context/AppContext";
 import { useNavigate } from 'react-router-dom';
 import CreateBook from '../components/CreateBook';
 import ViewBooks from '../components/ViewBooks';
+import ViewReviews from '../components/ViewReviews';
 import "../styles/Dashboard.css";
 
 
@@ -51,11 +52,20 @@ const Dashboard  = () => {
                     View genres
                     </button>
                 </div>
+                <h4 className = "review-header">
+                    Reviews
+                </h4>
+                <div className = "view-review">
+                <button onClick={() => setActiveView("ViewReviews")} className={activeView === "ViewReviews" ? "active" : ""}>
+                    View Reviews
+                    </button>
+                </div>
               </aside>
           
               <main className="main-content">
                 {activeView === "CreateBook" && <CreateBook/>}
                 {activeView === "ViewBooks" && <ViewBooks/>}
+                {activeView === "ViewReviews" && <ViewReviews/>}
               </main>
             </div>
           );

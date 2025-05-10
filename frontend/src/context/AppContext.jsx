@@ -21,6 +21,7 @@ export const AppProvider = ({ children }) => {
     const [genres, setGenres] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [bookReviews, setBookReviews] = useState([]);
+    const [allReviews, setAllReviews] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
     const [myBooks, setMyBooks] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -219,7 +220,31 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      
+
+      //fetch all reviews
+
+      //fetching books
+      const fetchReviews = async () => {
+        try {
+          setLoading(true);
+          
+          // Fetch books
+          const reviews = await api.get('/Reviews');
+
+          setAllReviews(reviews.data);
+          
+          setLoading(false);
+          
+        } catch (err) {
+          if (err.response?.status === 404) {
+            setError("No reviews found");
+          } else {
+            console.error("Fetch failed:", err);
+          }
+          setLoading(false);
+        }
+      };
+
     //get reviews for specific book
         const fetchBookReviews = async (bookId) => {
           try {
@@ -302,11 +327,20 @@ export const AppProvider = ({ children }) => {
       
           if (userRole === 'Admin' || userId === memberId) {
             await api.delete(`Reviews/${reviewId}`);
-            fetchReviewsByUser(memberId);
-          } else {
-            setError("Unauthorized: You can only delete your own review or be an Admin.");
-          }
-        } catch (err) {
+          
+             // Always update allReviews if Admin
+      if (userRole === 'Admin') {
+        setAllReviews(prev => prev.filter(review => review.reviewId !== reviewId));
+      }
+
+      // Always update userReviews if deleting own review (for "My Books")
+      if (userId === memberId) {
+        fetchReviewsByUser(memberId);
+      }
+    } else {
+      setError("Unauthorized: You can only delete your own review or be an Admin.");
+    }
+        }catch (err) {
           if (err.response?.status === 403) {
             setError("User not authorized: Not an Admin or owner of review!");
           } else {
@@ -430,6 +464,7 @@ export const AppProvider = ({ children }) => {
       books: filteredBooks.length > 0 ? filteredBooks : books,
       genresForBook,
       userReviews,
+      allReviews,
 
       clearReviews,
       fetchBooksByGenre,
@@ -438,10 +473,12 @@ export const AppProvider = ({ children }) => {
       fetchGenresForBook,
       submitReview,
       fetchReviewsByUser,
+      fetchReviews,
       deleteReview,
       createBook,
       assignBookToGenre,
-      deleteBook
+      deleteBook,
+
     };
     
         return (

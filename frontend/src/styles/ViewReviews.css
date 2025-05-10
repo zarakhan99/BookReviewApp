@@ -1,0 +1,59 @@
+
+.all-reviews-wrapper {
+  width: 100%; 
+  overflow: visible; 
+  
+}
+.reviews-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr; 
+  gap: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ddd;
+}
+
+.header-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0.5rem 0;
+}
+
+.userReviewsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.book-review-info {
+  display: grid;
+  flex-direction: row;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+  width: 100%; 
+  gap: 2rem; 
+  padding: 0.5rem;
+  border: 1px solid #ddd; 
+  flex-wrap: nowrap; 
+  overflow-x: visible;
+  max-width: 150vw;
+  background-color: #F4F1EA;
+  border-radius: 6px;
+}
+
+.book p.review-comment {
+
+  font-size: 0.85rem;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.star-icon {
+  color: orange !important; 
+  stroke: #3c352e;             
+  stroke-width: 10;  
+}
