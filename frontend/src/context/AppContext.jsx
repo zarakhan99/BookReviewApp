@@ -83,8 +83,8 @@ export const AppProvider = ({ children }) => {
           const bookData = {
             title: title,
             author: author,
-            publishYear: publishYear,
-            description: bookDescription,
+            publishYear: Number(publishYear),
+            bookDescription: bookDescription,
             imageUrl: bookImageUrl, 
           };
 
@@ -106,8 +106,8 @@ export const AppProvider = ({ children }) => {
       }
       };
 
-      //Posting a book
-
+      
+    //Assigning a genre to a book
       const assignBookToGenre = async (bookId, genreId) => {
         try {
           setLoading(true);
@@ -135,8 +135,7 @@ export const AppProvider = ({ children }) => {
       }
       };
 
-
-
+      //delete a book
 
     //get genres for a specific book
 
@@ -317,6 +316,12 @@ export const AppProvider = ({ children }) => {
         const clearReviews = () => {
           setBookReviews([]);
         };
+
+        //create a genre
+
+        //create a bookGenre
+
+
 
     const login = (userData, token) => {
 

@@ -53,7 +53,7 @@ const Dashboard  = () => {
               </aside>
           
               <main className="main-content">
-                {activeView === "CreateBook" && <CreateBook />}
+                {activeView === "CreateBook" && <CreateBook/>}
               </main>
             </div>
           );

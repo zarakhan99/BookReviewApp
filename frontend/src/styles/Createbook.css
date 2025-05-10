@@ -1,6 +1,6 @@
 * styles.css */
 * {
-    height: 100%;
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -57,27 +57,41 @@
   border-radius: 6px;     /* Rounded corners */
   box-sizing: border-box; /* Prevents padding from overflowing width */
 }
-.form-title {
 
-}
-
-.field-group {
-
+.genre-select {
+  height: 120px !important;
+  overflow-y: auto;
+  font-size: 1rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
 }
 
 label {
-
+    font-weight: bold;        /* Make text bold */
+    margin-bottom: 6px;       /* Add space below the label */
+    display: block;  
+    color: #382110;    
 }
 
-input {
-
-}
-
-select {
-
-}
 
 textarea {
+    height: 120px !important;
+  overflow-y: auto;
+  font-size: 1rem;
+
+}
+.display-genre
+{
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* This makes the list horizontal */
+  flex-wrap: wrap; /* Allows wrapping if many genres */
+  gap: 8px; /* Space between items */
+  margin-top: 7px;
+  color: #382110;
 
 }
 
@@ -98,8 +112,18 @@ textarea {
 }
 
 .error-message {
-
+    padding: 0.5rem 1rem !important;
+  margin-top: 1.5rem;
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+   min-height: fit-content;
+    height: auto;
 }
+
 
 @media (max-width: 768px) {
     .form-wrapper {
