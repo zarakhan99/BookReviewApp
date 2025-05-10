@@ -139,17 +139,54 @@ export const AppProvider = ({ children }) => {
       const deleteBook = async (bookId) => {
         try {
           setLoading(true);
-          console.log(userRole, userId);
+          console.log(userRole);
       
           if (userRole === 'Admin') {
+
+            await deleteBookGenre(bookId);
+
             await api.delete(`Books/${bookId}`);
-            fetchBookData();
+            
+            setBooks(prevBooks => prevBooks.filter(book => book.bookId !== bookId));
           } else {
-            setError("Unauthorized: You can only delete your own review or be an Admin.");
+            setError("Unauthorized: Not an Admin!");
+          }
+        } catch (err) {
+
+          if (err.response?.status === 404) {
+            // Silently ignore 404 errors
+
+          } else if (err.response?.status === 403) {
+            setError("User not authorized: Not an Admin!");
+
+          } else {
+            console.error("Deletion failed:", err);
+            setError("Failed to delete book. Please try again.");
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      //Delete a book genre using specific book Id
+      //delete a book
+      const deleteBookGenre = async (bookId) => {
+        try {
+          setLoading(true);
+          console.log(userRole);
+      
+          if (userRole === 'Admin') {
+            await api.delete(`BookGenre/bybook/${bookId}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            
+            setGenresForBook(prev => prev.filter(bg => bg.bookId !== bookId));
+          } else {
+            setError("Unauthorized: Not an Admin!");
           }
         } catch (err) {
           if (err.response?.status === 403) {
-            setError("User not authorized: Not an Admin or owner of review!");
+            setError("User not authorized: Not an Admin!");
           } else {
             console.error("Deletion failed:", err);
           }
@@ -157,6 +194,7 @@ export const AppProvider = ({ children }) => {
           setLoading(false);
         }
       };
+
 
     //get genres for a specific book
 

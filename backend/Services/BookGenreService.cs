@@ -53,5 +53,15 @@ namespace BookReviewApi.Services
                 await _context.SaveChangesAsync(); // Changes are saved to the database
             }
         }
+
+        public async Task DeleteBookGenresByBookAsync(int bookId)
+        {
+            var bookGenres = await _context.BookGenres
+            .Where(bg => bg.BookId == bookId)
+            .ToListAsync();
+            
+            _context.BookGenres.RemoveRange(bookGenres);
+            await _context.SaveChangesAsync();
+        }
     }
 }

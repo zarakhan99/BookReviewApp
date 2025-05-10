@@ -160,5 +160,25 @@ namespace BookReviewApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
+
+        // DELETE: api/BookGenres/bybook/5
+        [HttpDelete("bybook/{bookId}")]
+        public async Task<IActionResult> DeleteBookGenresByBook(int bookId)
+        {
+            try
+            {
+                await _bookGenreService.DeleteBookGenresByBookAsync(bookId); // Callsd service and fetches bookgenre by id
+
+                _logger.LogInformation($"BookGenre with book ID {bookId} deleted.");
+                return NoContent(); // Returns no content as deletion was successful
+            }
+            catch (Exception ex) // Log any exceptions that occur during the process and returns 500 internal error status code 
+            {
+                _logger.LogError(ex, "An error occurred while deleting the BookGenre book");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+
     }
 }

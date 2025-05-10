@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from 'react-router-dom';
 import CreateBook from '../components/CreateBook';
+import ViewBooks from '../components/ViewBooks';
 import "../styles/Dashboard.css";
 
 
@@ -36,7 +37,7 @@ const Dashboard  = () => {
                 <button onClick={() => setActiveView("CreateBook")} className={activeView === "CreateBook" ? "active" : ""}>
                     Create book 
                 </button>
-                <button onClick={() => setActiveView("viewBooks")} className={activeView === "viewBooks" ? "active" : ""}>
+                <button onClick={() => setActiveView("ViewBooks")} className={activeView === "ViewBooks" ? "active" : ""}>
                     View books</button>
                 </div>
                 <h4 className = "genre-header">
@@ -54,6 +55,7 @@ const Dashboard  = () => {
           
               <main className="main-content">
                 {activeView === "CreateBook" && <CreateBook/>}
+                {activeView === "ViewBooks" && <ViewBooks/>}
               </main>
             </div>
           );
