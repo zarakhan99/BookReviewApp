@@ -412,7 +412,57 @@ export const AppProvider = ({ children }) => {
 
         //create a genre
 
+        const createGenre = async (genreName) => {
+          try
+          {
+            setLoading(true);
+
+            const genreInfo = {
+              genreName: genreName,
+
+            };
+
+            const genre = await api.post('/Genres', genreInfo)
+
+          console.log('Genre added successfully:', genre.data);
+
+          setLoading(false);
+
+          return genre.data; // Return the new review data
+        } catch (err) {
+          console.error("Failed to add genre:", err);
+          setLoading(false);
+          setError("Failed to add review.");
+          return null;
+        }
+      };
         //create a bookGenre
+
+        const createBookGenre = async (bookId, genreId) => {
+          try
+          {
+            setLoading(true);
+
+            const bookGenreInfo = {
+              bookId: bookId,
+              genreId: genreId
+
+            };
+
+            const bookGenre = await api.post('/BookGenres', bookGenreInfo)
+
+          console.log('Genre added successfully:', bookGenre.data);
+
+          setLoading(false);
+
+          return bookGenre.data; // Return the new review data
+        } catch (err) {
+          console.error("Failed to add book genre:", err);
+          setLoading(false);
+          setError("Failed to add book genre.");
+          return null;
+        }
+      };
 
 
 
@@ -478,6 +528,8 @@ export const AppProvider = ({ children }) => {
       createBook,
       assignBookToGenre,
       deleteBook,
+      createGenre,
+      createBookGenre,
 
     };
     

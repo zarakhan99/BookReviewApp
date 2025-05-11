@@ -57,3 +57,14 @@
   stroke: #3c352e;             
   stroke-width: 10;  
 }
+
+.delete-review-button {
+  background: #8c1b1b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.delete-review-button:hover {
+  background: #671515;
+}
