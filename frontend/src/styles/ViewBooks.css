@@ -16,7 +16,7 @@
 
   .books-header{
     display: grid;
-    grid-template-columns: 100px 1fr 1fr 80px 2fr 100px;
+    grid-template-columns: 60px 100px 1fr 1fr 80px 2fr 100px;
     font-weight: bold;
     margin-bottom: 1rem;
     color: #333333;
@@ -35,12 +35,12 @@
 .book-row{
     display: grid;
     flex-direction: row;
-    grid-template-columns: 100px 1fr 1fr 80px 2fr 100px;
+    grid-template-columns: 60px 100px 1fr 1fr 80px 2fr 100px;
     align-items: center;
     gap: 5px;
-     border-bottom: 1px solid #eee;
-     padding-top: 10px;
-     color: #333333;
+    border-bottom: 1px solid #eee;
+    padding-top: 10px;
+    color: #333333;
 
 }
 

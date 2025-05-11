@@ -1,0 +1,50 @@
+* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  .allgenres-wrapper
+  {
+    width: 100%;
+  }
+
+  .genre-list {
+  width: 100%;
+}
+
+  .genres-header
+  {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 60px 1fr 120px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333333;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+.genre-row
+{
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 60px 1fr 120px;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid #eee;
+    padding-top: 10px;
+    color: #333333;
+    width: 100%;
+}
+
+.genre-cell
+{
+    padding: 0.5rem 0;
+}
+
+
+

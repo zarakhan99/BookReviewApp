@@ -144,7 +144,7 @@ export const AppProvider = ({ children }) => {
       
           if (userRole === 'Admin') {
 
-            await deleteBookGenre(bookId);
+            await deleteBookGenreByBook(bookId);
 
             await api.delete(`Books/${bookId}`);
             
@@ -168,35 +168,7 @@ export const AppProvider = ({ children }) => {
           setLoading(false);
         }
       };
-
-      //Delete a book genre using specific book Id
-      //delete a book
-      const deleteBookGenre = async (bookId) => {
-        try {
-          setLoading(true);
-          console.log(userRole);
       
-          if (userRole === 'Admin') {
-            await api.delete(`BookGenre/bybook/${bookId}`, {
-              headers: { Authorization: `Bearer ${token}` }
-            });
-            
-            setGenresForBook(prev => prev.filter(bg => bg.bookId !== bookId));
-          } else {
-            setError("Unauthorized: Not an Admin!");
-          }
-        } catch (err) {
-          if (err.response?.status === 403) {
-            setError("User not authorized: Not an Admin!");
-          } else {
-            console.error("Deletion failed:", err);
-          }
-        } finally {
-          setLoading(false);
-        }
-      };
-
-
     //get genres for a specific book
 
       const fetchGenresForBook = async (bookId) => {
@@ -351,7 +323,7 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-    //fetching genres
+      //fetching genres
     useEffect(() => {
       const fetchGenre = async () => {
         try {
@@ -422,21 +394,54 @@ export const AppProvider = ({ children }) => {
 
             };
 
-            const genre = await api.post('/Genres', genreInfo)
+            const newGenre = await api.post('/Genres', genreInfo)
 
-          console.log('Genre added successfully:', genre.data);
-
+          console.log('Genre added successfully:', newGenre.data);
+          
+          setGenres(prev => [...prev, newGenre.data]);
           setLoading(false);
-
-          return genre.data; // Return the new review data
+          return newGenre.data; // Return the new review data
         } catch (err) {
           console.error("Failed to add genre:", err);
           setLoading(false);
-          setError("Failed to add review.");
+          setError("Failed to add genre.");
           return null;
         }
       };
-        //create a bookGenre
+
+      //delete a genre and delete book genre associated with it
+
+      const deleteGenre = async (genreId) => {
+        try {
+          setLoading(true);
+          console.log(userRole);
+      
+          if (userRole === 'Admin') {
+
+            await deleteBookGenreByGenre(genreId);
+
+            await api.delete(`Genres/${genreId}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            
+            setGenres(prev => prev.filter(g => g.genreId !== genreId));
+            setGenresForBook(prev => prev.filter(g => g.genreId !== genreId));
+            
+          } else {
+            setError("Unauthorized: Not an Admin!");
+          }
+        } catch (err) {
+          if (err.response?.status === 403) {
+            setError("User not authorized: Not an Admin!");
+          } else {
+            console.error("Deletion failed:", err);
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
+        
+      //create a bookGenre
 
         const createBookGenre = async (bookId, genreId) => {
           try
@@ -464,8 +469,64 @@ export const AppProvider = ({ children }) => {
         }
       };
 
+      // delete a bookgenre using specific bookId
+      // when you delete a book the relation ship with the genre is also deleted 
+
+      const deleteBookGenreByBook = async (bookId) => {
+        try {
+          setLoading(true);
+          console.log(userRole);
+      
+          if (userRole === 'Admin') {
+            await api.delete(`BookGenre/bybook/${bookId}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            
+            setGenresForBook(prev => prev.filter(bg => bg.bookId !== bookId));
+          } else {
+            setError("Unauthorized: Not an Admin!");
+          }
+        } catch (err) {
+          if (err.response?.status === 403) {
+            setError("User not authorized: Not an Admin!");
+          } else {
+            console.error("Deletion failed:", err);
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      // delete a bookgenre using specific genre
+      // when you delete a genre the relationship with the book is also deleted 
+
+      const deleteBookGenreByGenre = async (genreId) => {
+        try {
+          setLoading(true);
+          console.log(userRole);
+      
+          if (userRole === 'Admin') {
+            await api.delete(`BookGenre/bygenre/${genreId}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            
+            setGenresForBook(prev => prev.filter(g => g.genreId !== genreId));
+          } else {
+            setError("Unauthorized: Not an Admin!");
+          }
+        } catch (err) {
+          if (err.response?.status === 403) {
+            setError("User not authorized: Not an Admin!");
+          } else {
+            console.error("Deletion failed:", err);
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
 
 
+      //login 
     const login = (userData, token) => {
 
       const decodedToken = jwtDecode(token)
@@ -483,6 +544,7 @@ export const AppProvider = ({ children }) => {
       setIsAuthenticated(true);
     };
   
+    //logout
     const logout = () => {
       api.defaults.headers.common['Authorization'] = null;
       setUser(null);
@@ -530,6 +592,7 @@ export const AppProvider = ({ children }) => {
       deleteBook,
       createGenre,
       createBookGenre,
+      deleteGenre,
 
     };
     

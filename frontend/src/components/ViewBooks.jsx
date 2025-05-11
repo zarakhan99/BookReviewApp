@@ -25,6 +25,7 @@ const ViewBooks = () => {
         <div className= "books-wrapper">
 
             <div className="books-header">
+                <h4>Id</h4>
                 <h4>Image</h4>
                 <h4>Title</h4>
                 <h4>Author</h4>
@@ -38,6 +39,7 @@ const ViewBooks = () => {
       <div className="books-list">
         {books.map(book => (
           <div key={book.bookId} className="book-row">
+            <div className="book-cell">{book.bookId}</div>
             <div className="book-cell">
               {book.imageUrl && (
                 <img 

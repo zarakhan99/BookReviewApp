@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
+import "../styles/ViewGenres.css";
 
 const ViewGenres = () => {
 
-     const { genres, fetchGenres,  } = useAppContext();
+     const { genres, deleteGenre } = useAppContext();
 
      const [errorMessage, setErrorMessage] = useState('');
 
-     const handleDelete = async (genreId) => {
+     const handleGenreDelete = async (genreId) => {
         {
             try 
             {
@@ -33,11 +34,11 @@ const ViewGenres = () => {
                 {/* Books List */}
       <div className="genre-list">
         {genres.map(genre => (
-          <div key={genres.genreId} className="genre-row">
+          <div key={genre.genreId} className="genre-row">
             <div className="genre-cell">{genre.genreId}</div>
             <div className="genre-cell">{genre.genreName}</div>
             <div className="genre-cell">
-              <button onClick={() => handleDelete(genre.genreId)} className ="delete-genre-button">
+              <button className= "delete-genre-btn" onClick={() => handleGenreDelete(genre.genreId)} >
                 Delete
               </button>
             </div>
