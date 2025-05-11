@@ -3,19 +3,24 @@
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: center; 
+    padding-top: 10px;
  
 }
 
 
-.title 
+.home-title 
 {
     text-align: center; 
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 23px;
+    color: #333;
+
 }
 
 .info 
 {
     text-align: center; /* Center the text */
     margin-top: 20px;
+    color: #333;
 }

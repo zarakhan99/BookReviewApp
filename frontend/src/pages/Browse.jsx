@@ -9,6 +9,8 @@ const Browse = () => {
   
 
     const [selectedGenreId, setSelectedGenreId] = useState(null);
+
+  
   
     const handleGenreClick = (genreId) => {
       setSelectedGenreId(genreId);

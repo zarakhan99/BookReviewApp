@@ -1,0 +1,56 @@
+.genre-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-genre-form {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.form-title h3 {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.genre-field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.genre-field-group label {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.genre-field-group input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="create-genre"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #2f7571;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+button[type="create-genre"]:hover {
+  background-color: #296764;
+}
+
+.error {
+  color: rgb(149, 28, 28);
+}

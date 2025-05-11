@@ -5,6 +5,7 @@ import CreateBook from '../components/CreateBook';
 import ViewBooks from '../components/ViewBooks';
 import ViewReviews from '../components/ViewReviews';
 import "../styles/Dashboard.css";
+import ManageGenres from '../components/ManageGenres';
 
 
 const Dashboard  = () => {
@@ -45,11 +46,11 @@ const Dashboard  = () => {
                     Genre 
                 </h4>
                 <div className = "genre-button">
-                <button onClick={() => setActiveView("createGenre")} className={activeView === "createGenre" ? "active" : ""}>
-                    Create genre
+                <button onClick={() => setActiveView("ManageGenres")} className={activeView === "ManageGenres" ? "active" : ""}>
+                    Manage Genres
                     </button>
-                <button onClick={() => setActiveView("viewGenres")} className={activeView === "viewGenres" ? "active" : ""}>
-                    View genres
+                <button onClick={() => setActiveView("ManageBookGenres")} className={activeView === "ManageBookGenres" ? "active" : ""}>
+                    Manage Book Genres
                     </button>
                 </div>
                 <h4 className = "review-header">
@@ -66,6 +67,7 @@ const Dashboard  = () => {
                 {activeView === "CreateBook" && <CreateBook/>}
                 {activeView === "ViewBooks" && <ViewBooks/>}
                 {activeView === "ViewReviews" && <ViewReviews/>}
+                {activeView === "ManageGenres" && <ManageGenres/>}
               </main>
             </div>
           );
