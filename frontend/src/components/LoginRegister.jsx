@@ -54,23 +54,23 @@ const LoginRegisterForm = () =>
     return (
 
     <div className="login wrapper">
-        <h3>Your Account</h3>
+        <h3 className="account-header">Sign in to BookLook</h3>
         <div className="login-box">
         <form onSubmit={isLoginForm ? handleLogin : handleregistration}>
             <div className="btn-group">
             <button type="button" className="sign-in-button" onClick={() => setIsLoginForm(true)}>Sign In</button>
-            <button type="button" className="register-button" onClick={() => setIsLoginForm(false)}>Register</button>
+            <button type="button" className="register-button" onClick={() => setIsLoginForm(false)}>Sign Up</button>
             </div>
             <div className= "form-group">
-            <label htmlFor="email" className="email-label">Email address</label>
+            <label htmlFor="email" className="label">Email address</label>
             <input type="email" className="field-input" id="email"  placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)}></input> 
             </div>
             <div className= "form-group">
-            <label htmlFor="password" className="password-label">Password</label>
+            <label htmlFor="password" className="label">Password</label>
             <input type="password" className="field-input" id="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)}></input> 
             </div>
             <button type="submit" className="action-buttons">
-            {isLoginForm ? 'Login' : 'Create Account'}</button>
+            {isLoginForm ? 'Login' : 'Register'}</button>
             {error && <div className="alert alert-danger mt-3">{error}</div>}
         </form>
         </div>
