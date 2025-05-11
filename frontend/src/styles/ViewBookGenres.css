@@ -1,0 +1,47 @@
+.book-genres-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  gap: 2rem;  
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0; 
+  text-align: center;  
+}
+
+.book-genre-list {
+  width: 100%;
+}
+
+.book-genre-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  gap: 1.5rem;  
+  padding: 0.5rem 0;  
+  border-bottom: 1px solid #ddd; 
+  align-items: center;
+}
+
+.book-genre-cell {
+  padding: 0.3rem;  
+  font-size: 0.95rem;  
+  text-align: center; 
+}
+
+.book-genre-error-message {
+  color: #8c1b1b;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.delete-book-genre-btn {
+  background: #8c1b1b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;  
+  text-align: center;
+}
+
+.delete-book-genre-btn:hover {
+  background: #671515;
+}

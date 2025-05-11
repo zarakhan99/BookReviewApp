@@ -83,8 +83,8 @@ const myBooks = () => {
         };
         
         return (
-            <div className="myBooks-wrapper">
-                <div className="books-header">
+            <div className="my-books-wrapper">
+                <div className="my-books-header">
                 <h4>Title</h4>
                 <h4>Rating</h4>
                 <h4>Review</h4>

@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateBookGenre from './CreateBookGenre';
-import "../styles/ManageGenres.css"; // Optional styling
+import "../styles/ManageBookGenres.css"; // Optional styling
+import ViewBookGenres from './ViewBookGenres';
 
 const ManageBookGenres = () => {
   return (
@@ -10,6 +11,9 @@ const ManageBookGenres = () => {
       {/* Section for creating new genres */}
       <div className="create-book-genre-section">
         <CreateBookGenre /> {/* This renders your form */}
+      </div>
+      <div className="list-book-genre-section">
+        <ViewBookGenres /> {/* This renders your form */}
       </div>
     </div>
   );

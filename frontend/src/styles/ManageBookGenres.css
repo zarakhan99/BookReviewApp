@@ -1,11 +1,11 @@
-.manage-genres-container {
+.manage-book-genres-container {
   max-width: 800px;
   margin: 0 auto;  /* Center the container horizontally */
   padding-top: 0;  /* Remove or reduce padding from the top */
   padding-bottom: 2rem;  /* Keep some padding at the bottom */
 }
 
-.manage-genre-header {
+.manage-book-genre-header {
   text-align: center;
   margin-top: 0;  /* Remove any top margin */
   margin-bottom: 10px;  /* Keep space between header and content */
@@ -13,11 +13,11 @@
   font-size: 25px;
 }
 
-.create-genre-section {
+.create-book-genre-section {
   margin-bottom: 2rem;
   padding: 1.5rem;
 }
 
-.list-genres-section {
+.list-book-genre-section {
   padding: 1.5rem;
 }
