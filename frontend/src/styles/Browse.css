@@ -74,7 +74,7 @@
   justify-content: center; /* Centers grid items when there's extra space */
 }
 
-.error-message {
+.browse-error-message {
   display: flex;
   flex-direction: column;
   align-items: center;

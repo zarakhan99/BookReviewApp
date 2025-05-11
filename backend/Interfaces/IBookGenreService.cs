@@ -8,4 +8,5 @@ public interface IBookGenreService // interface with http methods to be used in 
     Task AddBookGenreAsync(BookGenre bookGenre);
     Task DeleteBookGenreAsync(int id);
     Task DeleteBookGenresByBookAsync(int bookId);
+    Task DeleteBookGenresByGenreAsync(int genreId);
 }

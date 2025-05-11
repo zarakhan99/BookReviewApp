@@ -63,5 +63,15 @@ namespace BookReviewApi.Services
             _context.BookGenres.RemoveRange(bookGenres);
             await _context.SaveChangesAsync();
         }
+
+        public async Task DeleteBookGenresByGenreAsync(int genreId)
+        {
+            var bookGenres = await _context.BookGenres
+            .Where(bg => bg.GenreId == genreId)
+            .ToListAsync();
+            
+            _context.BookGenres.RemoveRange(bookGenres);
+            await _context.SaveChangesAsync();
+        }
     }
 }

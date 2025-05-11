@@ -54,7 +54,7 @@ const Browse = () => {
       <div className="book-container">
         <h2>Browse Books</h2>
         {error ? (
-          <p className="error-message">{error}</p>
+          <p className="browse-error-message">{error}</p>
         ) : loading ? (
           <p>Loading books...</p>
         ) : books && books.length > 0 ? (

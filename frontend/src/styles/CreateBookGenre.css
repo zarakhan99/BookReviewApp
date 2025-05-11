@@ -1,10 +1,10 @@
-.genre-wrapper {
+.book-genre-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.create-genre-form {
+.create-book-genre-form {
   background-color: #F4F1EA;
   padding: 2rem;
   border-radius: 8px;
@@ -12,32 +12,32 @@
   width: 600px;
 }
 
-.form-title h3 {
+.book-genre-title h3 {
   text-align: left;
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
 }
 
-.genre-field-group {
+.book-genre-field-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
 
-.genre-field-group label {
+.book-genre-field-group label {
   text-align: left;
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
-.genre-field-group input {
+.book-genre-field-group input {
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button[type="create-genre"] {
+.create-bg-button {
   width: 150px;
   padding: 0.5rem;
   font-size: 1rem;
@@ -45,8 +45,9 @@ button[type="create-genre"] {
   color: white;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
 }
 
-button[type="create-genre"]:hover {
+.create-bg-button:hover {
   background-color: #296764;
 }

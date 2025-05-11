@@ -6,6 +6,7 @@ import ViewBooks from '../components/ViewBooks';
 import ViewReviews from '../components/ViewReviews';
 import "../styles/Dashboard.css";
 import ManageGenres from '../components/ManageGenres';
+import ManageBookGenres from '../components/ManageBookGenres';
 
 
 const Dashboard  = () => {
@@ -68,6 +69,7 @@ const Dashboard  = () => {
                 {activeView === "ViewBooks" && <ViewBooks/>}
                 {activeView === "ViewReviews" && <ViewReviews/>}
                 {activeView === "ManageGenres" && <ManageGenres/>}
+                {activeView === "ManageBookGenres" && <ManageBookGenres/>}
               </main>
             </div>
           );
