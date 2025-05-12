@@ -50,3 +50,10 @@ button[type="create-genre"] {
 button[type="create-genre"]:hover {
   background-color: #296764;
 }
+
+@media screen and (max-width: 1023px) {
+  .create-genre-form {
+    width: 90%; 
+    padding: 1.5rem; 
+  }
+}

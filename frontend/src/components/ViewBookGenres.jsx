@@ -10,7 +10,7 @@ const ViewBookGenres = () => {
      
      useEffect(() => {
       fetchBookGenres();
-    }, [fetchBookGenres]);
+    }, []);
 
      const handleBookGenreDelete = async (bookGenreId) => {
         {

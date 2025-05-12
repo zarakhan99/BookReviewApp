@@ -51,3 +51,10 @@
 .create-bg-button:hover {
   background-color: #296764;
 }
+
+@media screen and (max-width: 1023px) {
+  .create-book-genre-form {
+    width: 80%; 
+    padding: 1.5rem; 
+  }
+}

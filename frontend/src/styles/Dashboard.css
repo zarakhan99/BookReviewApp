@@ -17,7 +17,7 @@
 }
 
 .books-header, .genre-header, .review-header {
-  text-align: left; /* Ensure text is aligned to the left */
+  text-align: left; 
   margin-top: 17px;
   padding-left: 13px;
   margin-bottom: 14px;
@@ -30,12 +30,10 @@
     font-size: 15px;
     background-color: #ffffff;
     color: #2f7571;
-    width: 100%;            /* Ensure buttons take full width of sidebar */
+    width: 100%;            
     display: block; 
     border: none;
     text-align: left;
-   
-
 }
 
 .genre-button button
@@ -43,7 +41,7 @@
     font-size: 15px;
     background-color: #ffffff;
     color: #2f7571;
-    width: 100%;            /* Ensure buttons take full width of sidebar */
+    width: 100%;           
     display: block; 
     border: none;
     text-align: left;
@@ -64,7 +62,7 @@
     font-size: 15px;
     background-color: white;
     color: #2f7571;
-    width: 100%;            /* Ensure buttons take full width of sidebar */
+    width: 100%;            
     display: block; 
     border: none;
     text-align: left;
@@ -76,4 +74,5 @@
   margin-left: 220px;   
   padding-top: 80px;    
   padding: 80px 2rem 2rem 2rem;
+  gap: 10px;
 }

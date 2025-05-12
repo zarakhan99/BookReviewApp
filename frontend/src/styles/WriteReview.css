@@ -85,3 +85,21 @@
     padding-right: 10px;
 }
   
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .reviews-wrapper {
+    width: 700px; 
+    height: auto; 
+  }
+
+  .review-form textarea{
+    height: 100px;
+  }
+
+  .star-rating {
+    font-size: 1.3rem; /* Slightly smaller stars */
+  }
+
+  .button {
+    padding: 0.6rem 1.2rem; /* Slightly smaller button */
+  }
+}

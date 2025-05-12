@@ -122,15 +122,7 @@ import React, { useState } from "react";
                                                             >
                                                               Dashboard
                                                             </Link>
-                                                          </li><li>
-                                                              <Link
-                                                                to="/manage-users"
-                                                                className={location.pathname === "/manage-users" ? "active" : ""}
-                                                                onClick={closeMenu}
-                                                              >
-                                                                Manage Users
-                                                              </Link>
-                                                            </li>
+                                                          </li>
                                                             </>
                                                         )}
                                                       </ul>

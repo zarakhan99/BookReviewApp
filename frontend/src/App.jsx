@@ -9,6 +9,7 @@ import BookDetails from './pages/BookDetails';
 import WriteReview from './pages/WriteReview';
 import MyBooks from './pages/MyBooks';
 import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/review/:bookId" element={<WriteReview />} />
         <Route path="/my-books" element={<MyBooks />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         
         {/* Fallback route for undefined paths */}

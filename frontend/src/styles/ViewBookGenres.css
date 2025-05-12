@@ -45,3 +45,16 @@
 .delete-book-genre-btn:hover {
   background: #671515;
 }
+
+@media screen and (max-width: 1023px) {
+  .book-genres-header,
+  .book-genre-row {
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 1rem;
+  }
+
+  .delete-book-genre-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+}

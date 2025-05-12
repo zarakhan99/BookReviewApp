@@ -108,6 +108,38 @@ export const AppProvider = ({ children }) => {
       }
       };
 
+      //Edit book 
+
+      const editBook = async (bookId, bookData) => {
+        try {
+          setLoading(true);
+
+          const editData = {
+            BookId: bookId, 
+            Title: bookData.title,
+            Author: bookData.author,
+            PublishYear: parseInt(bookData.publishYear),
+            BookDescription: bookData.bookDescription,
+            ImageUrl: bookData.imageUrl || null, 
+          };
+
+
+          const updatedBook = await api.put(`/Books/${bookId}`, editData)
+
+          setBooks(prev => prev.map(book => 
+            book.bookId === bookId ? { ...book, ...bookData } : book
+          ));
+          
+          setLoading(false);
+          return updatedBook.data; 
+      } catch(err)
+      {
+        console.error("Failed to edit book:", err);
+        setLoading(false);
+        setError("Failed to edit book.");
+        return null;
+      }
+    };
       
     //Assigning a genre to a book
       const assignBookToGenre = async (bookId, genreId) => {
@@ -193,8 +225,6 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-
-      //fetch all reviews
 
       //fetching books
       const fetchReviews = async () => {
@@ -328,6 +358,7 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
       const fetchGenre = async () => {
         try {
+          setError(null); 
           setLoading(true);
           
           // Fetch books
@@ -446,6 +477,7 @@ export const AppProvider = ({ children }) => {
 
       const fetchBookGenres = async () => {
         try {
+          setError(null);
           setLoading(true);
 
           if (userRole === 'Admin') {
@@ -644,6 +676,7 @@ export const AppProvider = ({ children }) => {
       deleteGenre,
       fetchBookGenres,
       deleteBookGenre,
+      editBook,
 
     };
     

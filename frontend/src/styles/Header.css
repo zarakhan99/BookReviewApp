@@ -72,28 +72,33 @@
 }
 .menu .search-button {
   padding: 8px 13px;
-  cursor: pointer; /* Force pointer cursor */
-  background: #2f7571; /* Solid background */
-  color: white; /* White text */
-  border: none; /* Remove default border */
-  border-radius: 3px; /* Optional: match input's border-radius */
+  cursor: pointer; 
+  background: #2f7571; 
+  color: white; 
+  border: none; 
+  border-radius: 3px; 
   line-height: 1; 
   height: auto;
   padding-top: 6.8px;
 }
   
-  /* 8. Hamburger menu icon for mobile */
   .menu-icon {
     display: none;
     color: #333333;
   }
   
-  /* 9. Responsive styles for mobile (media query) */
-  @media screen and (max-width: 768px) {
-    .menu {
-      background-color: #f4f1ea;
-    }
-    .menu-icon {
-      color: #333333;
-    }
+  @media screen and (min-width: 768px) {
+  .home-container {
+    padding-top: 20px;
   }
+
+  .home-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .info {
+    width: 80%;
+    font-size: 1.1rem;
+  }
+}

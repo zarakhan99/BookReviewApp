@@ -16,9 +16,9 @@
   .book-info
   {
     display: flex;
-    flex-direction: column;          /* Stack book info vertically */
-    align-items: flex-start;         /* Align all text to the left */
-    gap: 0.5rem;                     /* Space between the individual pieces of information */
+    flex-direction: column;          
+    align-items: flex-start;         
+    gap: 0.5rem;                     
     flex-grow: 1; 
     padding: 0;
     margin: 0;
@@ -28,8 +28,8 @@
   {
     width: 210px;
     height: auto;
-    max-height: none;        /* <-- this lifts restrictions */
-    object-fit: contain;     /* or remove this if it's not needed */
+    max-height: none;       
+    object-fit: contain;    
     flex-shrink: 0;
     border-radius: 6px;
   }
@@ -142,3 +142,4 @@
     margin-top: 0.5rem;
     
   }
+

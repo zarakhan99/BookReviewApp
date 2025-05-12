@@ -83,3 +83,37 @@
   width: 100%;
   text-align: center;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .browse-container {
+    margin-left: 160px; /* Slightly reduce margin */
+    padding-top: 70px; /* Adjust top padding */
+  }
+
+  .genre-sidebar {
+    width: 160px; /* Narrower sidebar */
+    font-size: 18px; /* Slightly smaller font */
+    padding: 5px 6px 5px 12px; /* Adjusted padding */
+  }
+
+  .genre-sidebar h4 {
+    font-size: 18px; /* Smaller heading */
+    margin-top: 15px;
+    margin-bottom: 12px;
+  }
+
+  .genre-list button {
+    font-size: 12px; /* Smaller button text */
+    padding: 4px 8px; /* Tighter padding */
+  }
+
+  .book-container {
+    padding: 0 15px; /* Add some side padding */
+  }
+
+  /* Ensure book grid adjusts */
+  .book-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller book cards */
+    gap: 15px; /* Reduced gap */
+  }
+}

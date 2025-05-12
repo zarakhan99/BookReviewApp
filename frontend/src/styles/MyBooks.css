@@ -1,8 +1,8 @@
 .my-books-wrapper {
   width: 100%; 
-  overflow: visible;
+   padding-top: 70px; 
   position: relative;
-  top: -20px;
+  min-height: 100vh; 
 }
 
 .my-books-header {
@@ -56,4 +56,39 @@
   color: orange !important; 
   stroke: #3c352e;             
   stroke-width: 10;  
+}
+
+.no-review
+{
+  padding-top: 70px; 
+}
+.delete-review {
+  background-color: #8c1b1b;
+  color: white;
+}
+
+.delete-review:hover {
+  background-color: #671515;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .my-books-wrapper {
+    padding-top: 60px; 
+  }
+
+  .my-books-header,
+  .book {
+    grid-template-columns: 1fr 1fr 1.5fr 1fr 0.8fr; 
+    gap: 1rem; 
+  }
+
+  .book {
+    padding: 0.5rem 0.8rem; 
+  }
+
+  .book p.review-comment {
+    font-size: 0.8rem; 
+    line-height: 1.3; 
+  }
 }

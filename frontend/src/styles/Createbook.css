@@ -35,27 +35,27 @@
 
 .field-group {
   display: flex;
-  flex-direction: column; /* Stacks label above input */
+  flex-direction: column; 
   width: 100%;
   margin-bottom: 16px;
-  padding: 12px;                  /* Space inside the box */
-  margin-bottom: 16px;           /* Space between fields */
-  background-color: #e4d5bcd6;     /* Light background */
-  border: 1px solid #efebe0;        /* Border around field */
+  padding: 12px;                 
+  margin-bottom: 16px;           
+  background-color: #e4d5bcd6;    
+  border: 1px solid #efebe0;        
   border-radius: 8px;    
-  align-items: flex-start;  /* Adds spacing between fields */
+  align-items: flex-start;  
 }
 
 .create-book-form input,
 .create-book-form select,
 .create-book-form textarea {
-  width: 100%;            /* Makes inputs stretch to container */
-  height: 30px;           /* Sets input height */
-  padding: 8px 12px;      /* Inner spacing */
-  font-size: 16px;        /* More readable text */
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 6px;     /* Rounded corners */
-  box-sizing: border-box; /* Prevents padding from overflowing width */
+  width: 100%;            
+  height: 30px;          
+  padding: 8px 12px;      
+  font-size: 16px;       
+  border: 1px solid #ccc; 
+  border-radius: 6px;     
+  box-sizing: border-box; 
 }
 
 .genre-select {
@@ -69,8 +69,8 @@
 }
 
 label {
-    font-weight: bold;        /* Make text bold */
-    margin-bottom: 6px;       /* Add space below the label */
+    font-weight: bold;        
+    margin-bottom: 6px;       
     display: block;  
     color: #382110;    
 }
@@ -84,12 +84,12 @@ textarea {
 }
 .display-genre
 {
-  list-style: none; /* Remove bullet points */
+  list-style: none; 
   padding: 0;
   margin: 0;
-  display: flex; /* This makes the list horizontal */
-  flex-wrap: wrap; /* Allows wrapping if many genres */
-  gap: 8px; /* Space between items */
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 8px; 
   margin-top: 7px;
   color: #382110;
 

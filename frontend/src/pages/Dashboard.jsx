@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useAppContext } from "../context/AppContext";
-import { useNavigate } from 'react-router-dom';
+import { useState} from 'react';
 import CreateBook from '../components/CreateBook';
 import ViewBooks from '../components/ViewBooks';
 import ViewReviews from '../components/ViewReviews';
@@ -11,28 +9,12 @@ import ManageBookGenres from '../components/ManageBookGenres';
 
 const Dashboard  = () => {
 
-    const { books, genres, createBook, assignBookToGenre, error, loading, isAuthenticated = false} = useAppContext();
-
-    const [activeView, setActiveView] = useState("");
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-
-        const isAuthorized = () => {
-            if (!isAuthenticated)
-            {
-                navigate(`/account`)
-            }  
-        };
-        isAuthorized();
-    
-        }, [isAuthenticated]);
+    const [activeView, setActiveView] = useState(null);
         
         return (
             <div className="dashboard-container">
               <aside className="admin-sidebar">
-                {/* All your sidebar content goes here */}
+                {/* Sidebar content*/}
                 <h4 className = "books-header">
                     Books 
                 </h4>
@@ -63,8 +45,16 @@ const Dashboard  = () => {
                     </button>
                 </div>
               </aside>
-          
+              
+              {/* main content*/}
               <main className="main-content">
+                {!activeView && (
+                    <div className="dashboard-welcome">
+                        <h2>Welcome to the Admin Dashboard!</h2>
+                        <p>The admin dashboard is where you can manage books, genres, bookgenres and reviews.</p>
+                        <p>Select an option from the sidebar to get started.</p>
+                    </div>
+                )}
                 {activeView === "CreateBook" && <CreateBook/>}
                 {activeView === "ViewBooks" && <ViewBooks/>}
                 {activeView === "ViewReviews" && <ViewReviews/>}

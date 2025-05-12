@@ -1,14 +1,14 @@
 .manage-genres-container {
   max-width: 800px;
-  margin: 0 auto;  /* Center the container horizontally */
-  padding-top: 0;  /* Remove or reduce padding from the top */
-  padding-bottom: 2rem;  /* Keep some padding at the bottom */
+  margin: 0 auto;  
+  padding-top: 0;  
+  padding-bottom: 2rem; 
 }
 
 .manage-genre-header {
   text-align: center;
-  margin-top: 0;  /* Remove any top margin */
-  margin-bottom: 10px;  /* Keep space between header and content */
+  margin-top: 0; 
+  margin-bottom: 10px;  
   color: #333;
   font-size: 25px;
 }
@@ -20,4 +20,10 @@
 
 .list-genres-section {
   padding: 1.5rem;
+}
+@media screen and (max-width: 1023px) {
+  .manage-genres-container {
+    max-width: 90%; 
+    padding: 0 1rem 2rem; 
+  }
 }

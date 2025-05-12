@@ -65,3 +65,120 @@
   color: #8c1b1b;
   margin-top: 10px;
 }
+
+.edit-form-wrapper {
+  width: 650px; 
+  margin: 0 auto 2rem auto; 
+  padding: 1.5rem; 
+  background-color: #fffdfa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.edit-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; 
+}
+
+.edit-form-title {
+  color: #382110;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.edit-field-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 12px; 
+  padding: 10px; 
+  background-color: #e4d5bcd6;
+  border: 1px solid #efebe0;
+  border-radius: 8px;
+  align-items: flex-start;
+}
+
+.edit-book-form input,
+.edit-book-form textarea {
+  width: 100%;
+  height: 30px;
+  padding: 6px 10px; 
+  font-size: 15px; 
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.edit-book-form textarea {
+  height: 100px !important; 
+}
+
+.edit-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.edit-submit-button {
+  background-color: #2f7571;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.edit-submit-button:hover {
+  background-color: #296764;
+}
+
+.cancel-button {
+  background-color: #8c1b1b;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.cancel-button:hover {
+  background-color: #671515;
+}
+
+.edit-error-message {
+  padding: 0.5rem 1rem !important;
+  margin-top: 1rem;
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  min-height: fit-content;
+  height: auto;
+}
+
+.edit-button {
+  padding: 10px 13px;
+  background: #c2a751;  
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px; 
+  margin-bottom: 5px;   
+}
+
+.edit-button:hover {
+  background: #a79044; 
+}
+
+
+@media (max-width: 768px) {
+  .edit-form-wrapper {
+    width: 90%;
+    padding: 1rem;
+  }
+}

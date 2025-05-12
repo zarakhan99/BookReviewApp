@@ -1,0 +1,36 @@
+.profile-wrapper {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  position: relative; 
+  padding-bottom: 60px; 
+}
+
+.profile-info {
+  margin-top: 1rem;
+  line-height: 1.8;
+}
+
+.profile-info p {
+  margin: 0.5rem 0;
+}
+
+.profile-wrapper > .footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  margin-left: -50vw;
+  left: 50%;
+  text-align: center;
+  background-color: #F4F1EA;
+  border-top: 1px solid #ddd;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile-wrapper {
+    max-width: 90%; 
+    padding: 1.5rem 1rem; 
+  }
+}
