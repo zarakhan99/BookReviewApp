@@ -3,25 +3,31 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import "../styles/CreateBookGenre.css";
 
-
+// Component to associate a book with a genre 
 const CreateGenre = () => {
 
   const {  createBookGenre, userRole, error } = useAppContext();
   
+  //state var
   const [bookId, setBookId] = useState("");
   const [genreId, setGenreId] = useState("");
 
   const navigate = useNavigate();
 
+  // Handles form submission
    const handleCreateBookGenreSubmit = async (e) => {  // Add event parameter
     e.preventDefault(); 
+    // Only allow Admins to submit
     if (userRole === "Admin") {
-       await createBookGenre(bookId, genreId);
+       await createBookGenre(bookId, genreId); // creates book genre using book id and genre id
       console.log("BookGenre successfully created!")
+
+      // Clear form inputs
       setBookId("");
       setGenreId("");
     }
     else{
+        // navigate non-admin users
         navigate(`/account`);
         return; 
     }

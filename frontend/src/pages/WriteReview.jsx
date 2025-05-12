@@ -4,7 +4,7 @@ import { useAppContext } from "../context/AppContext";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import "../styles/WriteReview.css";
 
-
+//Component to let user write review
 const WriteReview= () => {
 
     const { userId, isAuthenticated = false, submitReview } = useAppContext();
@@ -18,7 +18,7 @@ const WriteReview= () => {
     const navigate = useNavigate();
     const {bookId} = useParams();
 
-    useEffect(() => {
+    useEffect(() => { // Naviagets to account if user is not aithenticated
 
     const isAuthorized = () => {
         if (!isAuthenticated)
@@ -31,30 +31,32 @@ const WriteReview= () => {
     }, [isAuthenticated]);
     
 
-    const handleReviewsubmission = async (e) => {
+    const handleReviewsubmission = async (e) => { //handles review click
         e.preventDefault();
 
+        //If fields are empty return alert
         if (!rating || rating < 1 || rating > 5 || !reviewComment || reviewComment.length < 5)
         {
             alert("Invalid Input! Please provide a valid rating and comment");
             return;
         }
 
-        const userReview = await submitReview(userId, bookId, rating, reviewComment)
+        const userReview = await submitReview(userId, bookId, rating, reviewComment) // Calls function to post review
 
         if (userReview)
         {
-            navigate(`/books/${bookId}`);
+            navigate(`/books/${bookId}`); // nNvigates to book details page after review is successfully submitted
         }
         else
         {
-            alert("Error! Review submission unsuccessful.");
+            alert("Error! Review submission unsuccessful."); //Error if review coudnt be submitted
         }
 
         console.log("Review Submitted:", userId, bookId, rating, reviewComment);
        
     }
 
+    // Generate stars based on the rating 
     const userStarRating = () => {
 
         const handleClickStar = value => {

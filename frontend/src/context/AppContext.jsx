@@ -7,6 +7,8 @@ import { loginUser, registerUser } from '../services/AuthService';
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  
+  // Auth state
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [userId, setUserId] = useState(null);
@@ -14,8 +16,8 @@ export const AppProvider = ({ children }) => {
     const [userEmail, setUserEmail] = useState(); 
     const [token, setToken] = useState(null);
 
+    // App data state
     const [books, setBooks] = useState([]);
-
     const [bookDetails, setBookDetails] = useState([]);
     const [genresForBook, setGenresForBook]= useState([]);
     const [genres, setGenres] = useState([]);
@@ -34,7 +36,6 @@ export const AppProvider = ({ children }) => {
         try {
           setLoading(true);
           
-          // Fetch books
           const books = await api.get('/books');
 
           setBooks(books.data);
@@ -54,7 +55,8 @@ export const AppProvider = ({ children }) => {
       fetchBookData(); // Call inside useEffect
     }, []);
       
-    //fetch specific books using their Ids
+    //Fetch specific books using their Ids
+
       const fetchBookDetails = async (bookId) => {
         try {
           setLoading(true);
@@ -76,7 +78,7 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      //Posting a book
+      //Creating a book
 
       const createBook = async (title, author, publishYear,bookDescription, bookImageUrl) => {
         try {
@@ -108,7 +110,7 @@ export const AppProvider = ({ children }) => {
       }
       };
 
-      //Edit book 
+      //Editing a existing book 
 
       const editBook = async (bookId, bookData) => {
         try {
@@ -142,6 +144,7 @@ export const AppProvider = ({ children }) => {
     };
       
     //Assigning a genre to a book
+
       const assignBookToGenre = async (bookId, genreId) => {
         try {
           setLoading(true);
@@ -169,7 +172,8 @@ export const AppProvider = ({ children }) => {
       }
       };
 
-      //delete a book
+      //Deleting a book
+
       const deleteBook = async (bookId) => {
         try {
           setLoading(true);
@@ -202,7 +206,7 @@ export const AppProvider = ({ children }) => {
         }
       };
       
-    //get genres for a specific book
+    //Get genres for a specific book using its ID
 
       const fetchGenresForBook = async (bookId) => {
         try {
@@ -226,7 +230,8 @@ export const AppProvider = ({ children }) => {
       };
 
 
-      //fetching books
+      //Fetching reviews
+
       const fetchReviews = async () => {
         try {
           setLoading(true);
@@ -248,7 +253,8 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-    //get reviews for specific book
+    //Fetch reviews for specific book using book ID
+
         const fetchBookReviews = async (bookId) => {
           try {
             setLoading(true);
@@ -271,6 +277,7 @@ export const AppProvider = ({ children }) => {
         };
 
         //Submit a review 
+
         const submitReview = async (userId, bookId, rating, reviewComment ) => {
           try
           {
@@ -293,7 +300,7 @@ export const AppProvider = ({ children }) => {
 
           setLoading(false);
 
-          return userReview.data; // Return the new review data
+          return userReview.data; 
         } catch (err) {
           console.error("Failed to submit review:", err);
           setLoading(false);
@@ -302,7 +309,8 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      //fetch reviews by specific user using Id
+      //Fetch reviews by specific user using Id
+
       const fetchReviewsByUser = async (userId) => {
         try {
           setLoading(true);
@@ -322,7 +330,8 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-     //delete reviewById
+     //Delete  a review by  member Id or if youre a admin
+
       const deleteReview = async (reviewId, memberId) => {
         try {
           setLoading(true);
@@ -354,7 +363,8 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      //fetching genres
+      //Fetching genres
+
     useEffect(() => {
       const fetchGenre = async () => {
         try {
@@ -381,7 +391,8 @@ export const AppProvider = ({ children }) => {
       fetchGenre(); // Call inside useEffect
     }, []);
 
-    //filtering books by their genres
+    //Filtering books by their genres
+
         const fetchBooksByGenre = async (genreId) => {
           try {
             setLoading(true);
@@ -414,7 +425,7 @@ export const AppProvider = ({ children }) => {
           setBookReviews([]);
         };
 
-        //create a genre
+        //Create a genre
 
         const createGenre = async (genreName) => {
           try
@@ -441,7 +452,7 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      //delete a genre and delete book genre associated with it
+      //Delete a genre and delete book genre associated with it
 
       const deleteGenre = async (genreId) => {
         try {
@@ -473,7 +484,7 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      //fetch all book genres 
+      //Fetch all book genres 
 
       const fetchBookGenres = async () => {
         try {
@@ -493,7 +504,7 @@ export const AppProvider = ({ children }) => {
           };
         };
         
-      //create a bookGenre
+      //Create a bookGenre
 
         const createBookGenre = async (bookId, genreId) => {
           try
@@ -514,7 +525,7 @@ export const AppProvider = ({ children }) => {
 
           setLoading(false);
 
-          return bookGenre.data; // Return the new review data
+          return bookGenre.data; 
         } catch (err) {
           console.error("Failed to add book genre:", err);
           setLoading(false);
@@ -523,8 +534,8 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      // delete a bookgenre using specific bookId
-      // when you delete a book the relation ship with the genre is also deleted 
+      // Delete a bookgenre using specific bookId
+      // When you delete a book the relation ship with the genre is also deleted 
 
       const deleteBookGenreByBook = async (bookId) => {
         try {
@@ -551,8 +562,8 @@ export const AppProvider = ({ children }) => {
         }
       };
 
-      // delete a bookgenre using specific genre
-      // when you delete a genre the relationship with the book is also deleted 
+      // Delete a bookgenre using specific genre
+      // When you delete a genre the relationship with the book is also deleted 
 
       const deleteBookGenreByGenre = async (genreId) => {
         try {
@@ -578,6 +589,8 @@ export const AppProvider = ({ children }) => {
           setLoading(false);
         }
       };
+
+      //Delete a BookGenre
 
       const deleteBookGenre = async (bookGenreId) => {
         try {
@@ -647,6 +660,7 @@ export const AppProvider = ({ children }) => {
       userEmail,
     
       books,
+      filteredBooks,
       bookDetails,
       loading,
       error,

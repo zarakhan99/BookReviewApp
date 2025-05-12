@@ -5,16 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "../styles/MyBooks.css";
 
-
+// Display the books the user has reviewed
 const myBooks = () => {
 
-    const { books, userId, userReviews, fetchReviewsByUser, isAuthenticated = false, deleteReview } = useAppContext();
+    const { books, userId, userReviews, fetchReviewsByUser, isAuthenticated = false, deleteReview, fetchBooksByGenre } = useAppContext();
 
     const[filteredBooks, setFilteredBooks] = useState([]);
 
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => { // Redirect to account if the user is not authenticated
 
         const isAuthorized = () => {
             if (!isAuthenticated)
@@ -26,14 +26,15 @@ const myBooks = () => {
     
         }, [isAuthenticated]);
 
-        useEffect(() => {
+        useEffect(() => { // Fetch reviews for user by user Id
+            fetchBooksByGenre(null); 
             if (userId)
                 {
                     fetchReviewsByUser(userId)
                 }
         },[userId]);
 
-        const userBookReviews = () => {
+        const userBookReviews = () => { // Filter the books the user has reviewed
             if (userReviews.length > 0 && books.length > 0)
             {
                 const filterById = books.filter((book) => 
@@ -48,19 +49,19 @@ const myBooks = () => {
             }
          };
 
-        useEffect(() => {
+        useEffect(() => { //Run function if review or books data changes
             userBookReviews();
           }, [userReviews, books]);
           
           const handleDeleteClick = (reviewId) => {
             
-            const confirmed = window.confirm("Are you sure you want to delete this review?"); // alert will ask the user to confirm the deletion
+            const confirmed = window.confirm("Are you sure you want to delete this review?"); // Alert will ask the user to confirm the deletion
 
-            if(confirmed) // if user clicks ok
+            if(confirmed) // If user clicks ok
             {
-                deleteReview(reviewId, userId); // method to delete is called and deleted the review
+                deleteReview(reviewId, userId); // Method to delete is called and deleted the review
 
-                setFilteredBooks((previousBooks) => // update the fultered books state so the review it removed form the ui
+                setFilteredBooks((previousBooks) => // Update the filtered books state so the review it removed form the ui
                     previousBooks.filter((book) => book.reviewId !== reviewId)
                 );
     
@@ -68,6 +69,7 @@ const myBooks = () => {
             }
           }
 
+          // Created stars on user rating
           const getUserStarRating = (review) => {
             const reviewStars = []
             for (let i = 1; i <= 5; i++) {
@@ -79,7 +81,7 @@ const myBooks = () => {
                     reviewStars.push(<FaRegStar key={i} className="star-icon"/>);
                 }
             }
-            return reviewStars;
+            return reviewStars; // Return Stars
         };
         
         return (
@@ -109,7 +111,7 @@ const myBooks = () => {
                     );
                 })
             ) : (
-            <p className="no-review">No reviews for books found.</p> // Display a message if the user has no reviews for books
+            <p className="no-review">No reviews for books found.</p> 
             )}
             </div>
             </div>

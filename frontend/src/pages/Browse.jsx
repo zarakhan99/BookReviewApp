@@ -11,13 +11,13 @@ const Browse = () => {
     const [selectedGenreId, setSelectedGenreId] = useState(null);
 
   
-  
+  //Handles click for genre in sidebar
     const handleGenreClick = (genreId) => {
       setSelectedGenreId(genreId);
 
       if (genreId === null) {
         // Clear filter when "All Genres" is selected
-        fetchBooksByGenre(null); // or skip this line if it's redundant
+        fetchBooksByGenre(null); 
       } else {
         fetchBooksByGenre(genreId);
       }

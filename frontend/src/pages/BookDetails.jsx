@@ -10,11 +10,12 @@ const BookDetails = () => {
 
    const { bookDetails, genresForBook, bookReviews, fetchBookDetails, fetchBookReviews, fetchGenresForBook, isAuthenticated = false } = useAppContext();
 
+   // Retrieve the bookId from URL 
    const {bookId} = useParams();
 
    const navigate = useNavigate();
 
-   useEffect(() => {
+   useEffect(() => { // Fetch the book details, genres, and reviews 
     if (bookId) {
       fetchBookDetails(bookId);
       fetchGenresForBook(bookId);
@@ -22,6 +23,7 @@ const BookDetails = () => {
     }
   }, [bookId]);
 
+  //Calculate average rating for reviews and create stars
    const calcAverageRating = () => {
 
     if (bookReviews && bookReviews.length > 0)
@@ -45,16 +47,17 @@ const BookDetails = () => {
         }
       }
   
-      return { stars, averageRating };
+      return { stars, averageRating }; // Return stars and average rating
     }
      else
-     {
+     { // Return empty stars if no reviews
       const emptyStars = Array(5).fill().map((_, i) => <FaRegStar key={i} />);
-      return { stars: emptyStars, averageRating: "0.0" }; // Default when no reviews
+      return { stars: emptyStars, averageRating: "0.0" }; 
      }
 
     }
 
+    // Display Users stars based on their rating
     const getUserStarRating = (review) => {
 
     const reviewStars = []
@@ -72,6 +75,7 @@ const BookDetails = () => {
         return reviewStars;
     }
     
+    //Handles click to write review
     const handleWriteReviewClick = () => {
       if (isAuthenticated)
       {

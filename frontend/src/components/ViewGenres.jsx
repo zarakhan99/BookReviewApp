@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
 import "../styles/ViewGenres.css";
 
+// ViewGenres isplays a list of genres and allows genre deletion
 const ViewGenres = () => {
 
      const { genres, deleteGenre } = useAppContext();
 
      const [errorMessage, setErrorMessage] = useState('');
 
+     //handles genre deletion
      const handleGenreDelete = async (genreId) => {
         {
             try 
             {
-                await deleteGenre(genreId);
+                await deleteGenre(genreId); // calls delete genre method 
                 console.log("Genre deleted successfully!");
             } 
             catch (err) {

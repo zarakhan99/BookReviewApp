@@ -4,7 +4,7 @@ import { loginUser, registerUser } from '../services/AuthService';
 import { useAppContext } from '../context/AppContext';
 import "../styles/LoginRegister.css";
 
-
+// Login and Register component
 const LoginRegisterForm = () =>
 {
     const { login } = useAppContext();
@@ -14,10 +14,11 @@ const LoginRegisterForm = () =>
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+     // Handle login 
     const handleLogin = async (event) => { 
         event.preventDefault();
         try {
-            const userResponse = await loginUser(email, password);
+            const userResponse = await loginUser(email, password); 
             
             if (userResponse.token) {
                 login(userResponse.userData, userResponse.token);
@@ -32,6 +33,7 @@ const LoginRegisterForm = () =>
           }
         };
     
+      //Handle registration
     const handleregistration = async (event) => { 
         event.preventDefault();
         try {

@@ -2,23 +2,25 @@ import { useState, useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
 import "../styles/ViewBookGenres.css";
 
+// Component for viewing and deleting BookGenre associations
 const ViewBookGenres = () => {
 
      const { bookGenres, fetchBookGenres, deleteBookGenre } = useAppContext();
 
      const [errorMessage, setErrorMessage] = useState('');
      
-     useEffect(() => {
+     useEffect(() => { // Fetches book genres on mount
       fetchBookGenres();
     }, []);
 
+    //Handles book genre deletion
      const handleBookGenreDelete = async (bookGenreId) => {
         {
             try 
             {
-                await deleteBookGenre(bookGenreId);
+                await deleteBookGenre(bookGenreId); // Deletes book genre using genre id
                 console.log("BookGenre deleted successfully!");
-                await fetchBookGenres();
+                await fetchBookGenres(); // Refetches book genres to update list
             } 
             catch (err) {
                 setErrorMessage(err.message || "Failed to delete book genre");

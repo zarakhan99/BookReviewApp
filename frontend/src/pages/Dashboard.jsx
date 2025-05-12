@@ -9,6 +9,7 @@ import ManageBookGenres from '../components/ManageBookGenres';
 
 const Dashboard  = () => {
 
+    // State to manage which view is active 
     const [activeView, setActiveView] = useState(null);
         
         return (

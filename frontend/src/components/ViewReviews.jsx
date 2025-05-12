@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "../styles/ViewReviews.css";
 
+// ViewReviews allows admins to manage all book reviews
 
 const ViewReviews = () => {
 
@@ -33,11 +34,13 @@ const ViewReviews = () => {
             }
           }
 
+        // Map reviews to with books based on bookId
           const bookReviews = allReviews.map(review => {
             const book = books.find(book => book.bookId === review.bookId);
             return { ...review, book };
         }).filter(item => item.book); 
 
+        //Creates stars based on rating
         const getUserStarRating = (rating) => {
                     const reviewStars = []
                     for (let i = 1; i <= 5; i++) {
@@ -49,7 +52,7 @@ const ViewReviews = () => {
                             reviewStars.push(<FaRegStar key={i} className="star-icon"/>);
                         }
                     }
-                    return reviewStars;
+                    return reviewStars; // Returns an array of stars
                 };
     
     return(

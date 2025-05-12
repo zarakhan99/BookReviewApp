@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAppContext } from "../context/AppContext";
 import "../styles/ViewBooks.css";
 
+// ViewBooks component handles listing, editing, and deleting books
 const ViewBooks = () => {
 
      const { books, deleteBook, editBook } = useAppContext();
@@ -9,7 +10,7 @@ const ViewBooks = () => {
      const [errorMessage, setErrorMessage] = useState('');
      const [editingBook, setEditingBook] = useState(null);
 
-     const [bookData, setBookData] = useState({
+     const [bookData, setBookData] = useState({ //Book form data
       title: "",
       author: "",
       publishYear: "",
@@ -17,14 +18,15 @@ const ViewBooks = () => {
       imageUrl: ""
     });
 
+    //Handles editing book
     const handleEditClick = (book) => {
-      setEditingBook(book.bookId);
-      setBookData({
+      setEditingBook(book.bookId); // Mark current book as being edited
+      setBookData({ // Prepoulate fields in form
         title: book.title || "",
         author: book.author || "",
-        publishYear: book.publishYear?.toString() || "", // Keep as string in state
+        publishYear: book.publishYear?.toString() || "", 
         bookDescription: book.bookDescription || "",
-        imageUrl: book.imageUrl || "", // Ensure it's not null
+        imageUrl: book.imageUrl || "", 
         });
 
       window.scrollTo({
@@ -33,42 +35,46 @@ const ViewBooks = () => {
         });
     };
 
+    //Handles edit submission
      const handleEditBookSubmit = async (e) => {
       e.preventDefault();
       try {
-
+        //If missing fields set error message
         if (!bookData.title || !bookData.author || !bookData.publishYear || !bookData.bookDescription) 
         {
           setErrorMessage("*** Missing Fields: All fields must be filled to edit a book ***");
           return;
         }
 
-        await editBook(editingBook, bookData);
+        await editBook(editingBook, bookData); // call edit method
 
         console.log("Book updated successfully!");
-        setEditingBook(null);
-        setErrorMessage("")
+        setEditingBook(null); // set edit book to null
+        setErrorMessage("") // set error to null
 
       } catch (err) {
         setErrorMessage("Failed to update book");
       }
     };
     
+    //handles cancel - sets edited book to null
     const handleCancelEdit = () => {
-      setEditingBook(null);
+      setEditingBook(null); 
       setErrorMessage("")
     };
 
+    // handles field chnage
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setBookData(prev => ({ ...prev, [name]: value }));
   };
 
+  //Handles book deletion
      const handleDelete = async (bookId) => {
         {
             try 
             {
-                await deleteBook(bookId);
+                await deleteBook(bookId); // Calls delete method
                 console.log("Book deleted successfully!");
             } 
             catch (err) {

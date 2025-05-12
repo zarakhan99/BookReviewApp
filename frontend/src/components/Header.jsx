@@ -14,19 +14,21 @@ import React, { useState } from "react";
    const navigate = useNavigate();
 
 
-   const toggleMenu = () => {
+   const toggleMenu = () => { // Toggle for menu
     setMenuOpen((prevState) => !prevState);
   };
 
-  const closeMenu = () => {
+  const closeMenu = () => { //
     setMenuOpen(false);
   };
 
+   // Handle user logout
   const handleLogout = () => {
     logout();
     navigate("/home");
   };
 
+  //Handle search
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import "../styles/Createbook.css";
 
+// Component to create a new book and assign it to a genre by using book genre
 const CreateBook = () => {
     
     const { createBook, assignBookToGenre, genres } = useAppContext();
@@ -12,7 +13,7 @@ const CreateBook = () => {
     const [publishYear, setPublishYear] = useState("");
     const [bookDescription, setBookDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const [selectedGenre, setSelectedGenre] = useState(""); // array for multiple genre selection
+    const [selectedGenre, setSelectedGenre] = useState(""); 
     const [errorMessage, setErrorMessage] = useState('');
     
     const handleCreateBookClick = async (e) => {
@@ -20,11 +21,13 @@ const CreateBook = () => {
 
     setErrorMessage(""); // Clear previous errors
 
+    //If any fields are empty, show error message
+
     if (title && author && publishYear && bookDescription && imageUrl && selectedGenre) {
     
         try{
         
-        const newBook = await createBook (
+        const newBook = await createBook ( // Create the book using function
             title, 
             author, 
             Number(publishYear), 
@@ -36,10 +39,12 @@ const CreateBook = () => {
             console.log("Book Created Successfully!");
             console.log(newBook);
             
+            // Assign the book to a selected genre
             const assignedGenres = await assignBookToGenre(newBook.bookId, selectedGenre);
 
             console.log("Genre assignment response:", assignedGenres); 
 
+            // Clear the form after submission
             if (assignedGenres) 
                 {
 
@@ -52,9 +57,9 @@ const CreateBook = () => {
 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                setErrorMessage("Genre assignment failed!");  // Moved inside this block
+                setErrorMessage("Genre assignment failed!");  
             }
-        }
+        } // Handle errors
         } catch (err) {
       setErrorMessage(err.response?.data || "Book creation failed");
     }
@@ -63,6 +68,7 @@ const CreateBook = () => {
     }
 };
 
+// return create book form
     return (
         <div className = "form-wrapper">
             <form className = "create-book-form" onSubmit={handleCreateBookClick}>

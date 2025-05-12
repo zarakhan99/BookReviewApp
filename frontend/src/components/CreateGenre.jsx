@@ -1,25 +1,28 @@
-import { useState, useContext } from 'react';
+import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import "../styles/CreateGenres.css";
 
-
+// Component to create a new genre 
 const CreateGenre = () => {
 
   const {  createGenre, userRole, error } = useAppContext();
 
+  //State var
    const [genreName, setGenreName] = useState("");
 
   const navigate = useNavigate();
 
+  //handles create genre
    const handleCreateGenreSubmit = async (e) => {  // Add event parameter
     e.preventDefault(); 
-    if (userRole === "Admin") {
-       await createGenre(genreName);
+    if (userRole === "Admin") { 
+       await createGenre(genreName); // create genre using genre name
       console.log("Genre successfully created!")
+      //Clear field
       setGenreName('');
     }
-    else{
+    else{ // Navigate non admin users
         navigate(`/account`);
         return; 
     }

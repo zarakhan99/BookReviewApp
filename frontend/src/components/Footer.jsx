@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Footer component
 const Footer = () => {
     return (
       <footer className="footer">
